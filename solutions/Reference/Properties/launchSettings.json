@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "NMF": {
+      "commandName": "Project",
+      "commandLineArgs": "reference",
+      "environmentVariables": {
+        "RunIndex": "Debug",
+        "Sequences": "20",
+        "ModelPath": "C:\\Projects\\ttc2021\\models\\2",
+        "Model": "2",
+        "Tool": "Reference"
+      }
+    }
+  }
+}

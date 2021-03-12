@@ -1,0 +1,2 @@
+BindAntibodies_Plate02_S
+WashAfterAntibodiesBound_Plate01_S

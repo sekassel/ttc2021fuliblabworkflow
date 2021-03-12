@@ -1,0 +1,2 @@
+BindConjugate2_Plate02_S
+WashConjugate2_Plate01_S
