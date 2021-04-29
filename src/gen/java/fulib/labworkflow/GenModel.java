@@ -23,6 +23,9 @@ public class GenModel implements ClassModelDecorator
       JobRequest jobRequest;
 
       @Link("assay")
+      List<ProtocolStep> steps;
+
+      @Link("assay")
       List<Reagent> reagents;
    }
 
@@ -36,6 +39,9 @@ public class GenModel implements ClassModelDecorator
 
    class ProtocolStep {
       String id;
+
+      @Link("steps")
+      Assay assay;
 
       @Link("previous")
       ProtocolStep next;

@@ -7,10 +7,12 @@ public class ProtocolStep
    public static final String PROPERTY_ID = "id";
    public static final String PROPERTY_NEXT = "next";
    public static final String PROPERTY_PREVIOUS = "previous";
+   public static final String PROPERTY_ASSAY = "assay";
    private String id;
    private ProtocolStep next;
    private ProtocolStep previous;
    protected PropertyChangeSupport listeners;
+   private Assay assay;
 
    public String getId()
    {
@@ -84,6 +86,33 @@ public class ProtocolStep
       return this;
    }
 
+   public Assay getAssay()
+   {
+      return this.assay;
+   }
+
+   public ProtocolStep setAssay(Assay value)
+   {
+      if (this.assay == value)
+      {
+         return this;
+      }
+
+      final Assay oldValue = this.assay;
+      if (this.assay != null)
+      {
+         this.assay = null;
+         oldValue.withoutSteps(this);
+      }
+      this.assay = value;
+      if (value != null)
+      {
+         value.withSteps(this);
+      }
+      this.firePropertyChange(PROPERTY_ASSAY, oldValue, value);
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -113,6 +142,7 @@ public class ProtocolStep
 
    public void removeYou()
    {
+      this.setAssay(null);
       this.setNext(null);
       this.setPrevious(null);
    }

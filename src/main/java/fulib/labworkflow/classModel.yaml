@@ -102,7 +102,7 @@
   modified: 	false
   name: 	ProtocolStep
   propertyStyle: 	Bean
-  roles: 	protocolStep_next 	protocolStep_previous
+  roles: 	protocolStep_assay 	protocolStep_next 	protocolStep_previous
   subClasses: 	addReagent 	distributeSample 	incubate 	wash
 
 - reagent: 	org.fulib.classmodel.Clazz
@@ -142,7 +142,7 @@
   modified: 	false
   name: 	Assay
   propertyStyle: 	Bean
-  roles: 	assay_reagents 	assay_jobRequest
+  roles: 	assay_reagents 	assay_steps 	assay_jobRequest
 
 - sample: 	org.fulib.classmodel.Clazz
   attributes: 	sample_sampleID 	sample_state
@@ -417,6 +417,16 @@
   type: 	String
   typeSignature: 	String
 
+- protocolStep_assay: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	protocolStep
+  id: 	ProtocolStep_assay
+  modified: 	false
+  name: 	assay
+  other: 	assay_steps
+  propertyStyle: 	Bean
+
 - protocolStep_next: 	org.fulib.classmodel.AssocRole
   aggregation: 	false
   cardinality: 	1
@@ -522,6 +532,18 @@
   modified: 	false
   name: 	reagents
   other: 	reagent_assay
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
+
+- assay_steps: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	assay
+  collectionType: 	c1
+  id: 	Assay_steps
+  modified: 	false
+  name: 	steps
+  other: 	protocolStep_assay
   propertyStyle: 	Bean
   roleType: 	"java.util.ArrayList<%s>"
 

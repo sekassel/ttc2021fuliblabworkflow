@@ -11,10 +11,12 @@ public class Assay
    public static final String PROPERTY_NAME = "name";
    public static final String PROPERTY_REAGENTS = "reagents";
    public static final String PROPERTY_JOB_REQUEST = "jobRequest";
+   public static final String PROPERTY_STEPS = "steps";
    private String name;
    protected PropertyChangeSupport listeners;
    private List<Reagent> reagents;
    private JobRequest jobRequest;
+   private List<ProtocolStep> steps;
 
    public String getName()
    {
@@ -127,6 +129,72 @@ public class Assay
       return this;
    }
 
+   public List<ProtocolStep> getSteps()
+   {
+      return this.steps != null ? Collections.unmodifiableList(this.steps) : Collections.emptyList();
+   }
+
+   public Assay withSteps(ProtocolStep value)
+   {
+      if (this.steps == null)
+      {
+         this.steps = new ArrayList<>();
+      }
+      if (!this.steps.contains(value))
+      {
+         this.steps.add(value);
+         value.setAssay(this);
+         this.firePropertyChange(PROPERTY_STEPS, null, value);
+      }
+      return this;
+   }
+
+   public Assay withSteps(ProtocolStep... value)
+   {
+      for (final ProtocolStep item : value)
+      {
+         this.withSteps(item);
+      }
+      return this;
+   }
+
+   public Assay withSteps(Collection<? extends ProtocolStep> value)
+   {
+      for (final ProtocolStep item : value)
+      {
+         this.withSteps(item);
+      }
+      return this;
+   }
+
+   public Assay withoutSteps(ProtocolStep value)
+   {
+      if (this.steps != null && this.steps.remove(value))
+      {
+         value.setAssay(null);
+         this.firePropertyChange(PROPERTY_STEPS, value, null);
+      }
+      return this;
+   }
+
+   public Assay withoutSteps(ProtocolStep... value)
+   {
+      for (final ProtocolStep item : value)
+      {
+         this.withoutSteps(item);
+      }
+      return this;
+   }
+
+   public Assay withoutSteps(Collection<? extends ProtocolStep> value)
+   {
+      for (final ProtocolStep item : value)
+      {
+         this.withoutSteps(item);
+      }
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -157,6 +225,7 @@ public class Assay
    public void removeYou()
    {
       this.withoutReagents(new ArrayList<>(this.getReagents()));
+      this.withoutSteps(new ArrayList<>(this.getSteps()));
       this.setJobRequest(null);
    }
 }
