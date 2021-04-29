@@ -1,11 +1,91 @@
 - c: 	org.fulib.classmodel.ClassModel
-  classes: 	addReagent 	protocolStep 	reagent 	distributeSample 	incubate 	wash 	assay 	sample 	jobRequest
+  classes: 	washJob 	job 	incubateJob 	tipLiquidTransfer 	liquidTransferJob 	tubeRunner 	labware 	trough 	microplate 	jobCollection 	addReagent 	protocolStep 	reagent 	distributeSample 	incubate 	wash 	assay 	sample 	jobRequest
   defaultCollectionType: 	c1
   defaultPropertyStyle: 	Bean
   defaultRoleType: 	"java.util.ArrayList<%s>"
   mainJavaDir: 	"src/main/java"
   packageName: 	fulib.labworkflow
   packageSrcFolder: 	"src/main/java/fulib/labworkflow"
+
+- washJob: 	org.fulib.classmodel.Clazz
+  attributes: 	washJob_cavities 	washJob_microplate
+  model: 	c
+  modified: 	false
+  name: 	WashJob
+  propertyStyle: 	Bean
+  superClass: 	job
+
+- job: 	org.fulib.classmodel.Clazz
+  attributes: 	job_state 	job_protocolStepName
+  model: 	c
+  modified: 	false
+  name: 	Job
+  propertyStyle: 	Bean
+  roles: 	job_jobCollection 	job_previous 	job_next
+  subClasses: 	washJob 	incubateJob 	liquidTransferJob
+
+- incubateJob: 	org.fulib.classmodel.Clazz
+  attributes: 	incubateJob_temperature 	incubateJob_duration 	incubateJob_microplate
+  model: 	c
+  modified: 	false
+  name: 	IncubateJob
+  propertyStyle: 	Bean
+  superClass: 	job
+
+- tipLiquidTransfer: 	org.fulib.classmodel.Clazz
+  attributes: 	tipLiquidTransfer_sourceCavityIndex 	tipLiquidTransfer_volume 	tipLiquidTransfer_targetCavityIndex 	tipLiquidTransfer_status
+  model: 	c
+  modified: 	false
+  name: 	TipLiquidTransfer
+  propertyStyle: 	Bean
+  roles: 	tipLiquidTransfer_job
+
+- liquidTransferJob: 	org.fulib.classmodel.Clazz
+  attributes: 	liquidTransferJob_source 	liquidTransferJob_target
+  model: 	c
+  modified: 	false
+  name: 	LiquidTransferJob
+  propertyStyle: 	Bean
+  roles: 	liquidTransferJob_tips
+  superClass: 	job
+
+- tubeRunner: 	org.fulib.classmodel.Clazz
+  attributes: 	tubeRunner_barcodes
+  model: 	c
+  modified: 	false
+  name: 	TubeRunner
+  propertyStyle: 	Bean
+  superClass: 	labware
+
+- labware: 	org.fulib.classmodel.Clazz
+  attributes: 	labware_name
+  model: 	c
+  modified: 	false
+  name: 	Labware
+  propertyStyle: 	Bean
+  roles: 	labware_jobCollection
+  subClasses: 	tubeRunner 	trough 	microplate
+
+- trough: 	org.fulib.classmodel.Clazz
+  model: 	c
+  modified: 	false
+  name: 	Trough
+  propertyStyle: 	Bean
+  superClass: 	labware
+
+- microplate: 	org.fulib.classmodel.Clazz
+  model: 	c
+  modified: 	false
+  name: 	Microplate
+  propertyStyle: 	Bean
+  superClass: 	labware
+
+- jobCollection: 	org.fulib.classmodel.Clazz
+  model: 	c
+  modified: 	false
+  name: 	JobCollection
+  propertyStyle: 	Bean
+  roles: 	jobCollection_labware 	jobCollection_jobs
 
 - addReagent: 	org.fulib.classmodel.Clazz
   attributes: 	addReagent_volume
@@ -85,6 +165,229 @@
   itf: 	org.fulib.classmodel.CollectionInterface.List
   qualifiedImplName: 	java.util.ArrayList
   simpleImplName: 	ArrayList
+
+- washJob_cavities: 	org.fulib.classmodel.Attribute
+  clazz: 	washJob
+  collectionType: 	c1
+  id: 	WashJob_cavities
+  modified: 	false
+  name: 	cavities
+  propertyStyle: 	Bean
+  type: 	Integer
+  typeSignature: 	Integer
+
+- washJob_microplate: 	org.fulib.classmodel.Attribute
+  clazz: 	washJob
+  id: 	WashJob_microplate
+  modified: 	false
+  name: 	microplate
+  propertyStyle: 	Bean
+  type: 	Microplate
+  typeSignature: 	Microplate
+
+- job_state: 	org.fulib.classmodel.Attribute
+  clazz: 	job
+  id: 	Job_state
+  modified: 	false
+  name: 	state
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- job_protocolStepName: 	org.fulib.classmodel.Attribute
+  clazz: 	job
+  id: 	Job_protocolStepName
+  modified: 	false
+  name: 	protocolStepName
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- job_jobCollection: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	job
+  id: 	Job_jobCollection
+  modified: 	false
+  name: 	jobCollection
+  other: 	jobCollection_jobs
+  propertyStyle: 	Bean
+
+- job_previous: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	job
+  id: 	Job_previous
+  modified: 	false
+  name: 	previous
+  other: 	job_next
+  propertyStyle: 	Bean
+
+- job_next: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	job
+  id: 	Job_next
+  modified: 	false
+  name: 	next
+  other: 	job_previous
+  propertyStyle: 	Bean
+
+- incubateJob_temperature: 	org.fulib.classmodel.Attribute
+  clazz: 	incubateJob
+  id: 	IncubateJob_temperature
+  modified: 	false
+  name: 	temperature
+  propertyStyle: 	Bean
+  type: 	double
+  typeSignature: 	double
+
+- incubateJob_duration: 	org.fulib.classmodel.Attribute
+  clazz: 	incubateJob
+  id: 	IncubateJob_duration
+  modified: 	false
+  name: 	duration
+  propertyStyle: 	Bean
+  type: 	int
+  typeSignature: 	int
+
+- incubateJob_microplate: 	org.fulib.classmodel.Attribute
+  clazz: 	incubateJob
+  id: 	IncubateJob_microplate
+  modified: 	false
+  name: 	microplate
+  propertyStyle: 	Bean
+  type: 	Microplate
+  typeSignature: 	Microplate
+
+- tipLiquidTransfer_sourceCavityIndex: 	org.fulib.classmodel.Attribute
+  clazz: 	tipLiquidTransfer
+  id: 	TipLiquidTransfer_sourceCavityIndex
+  modified: 	false
+  name: 	sourceCavityIndex
+  propertyStyle: 	Bean
+  type: 	int
+  typeSignature: 	int
+
+- tipLiquidTransfer_volume: 	org.fulib.classmodel.Attribute
+  clazz: 	tipLiquidTransfer
+  id: 	TipLiquidTransfer_volume
+  modified: 	false
+  name: 	volume
+  propertyStyle: 	Bean
+  type: 	double
+  typeSignature: 	double
+
+- tipLiquidTransfer_targetCavityIndex: 	org.fulib.classmodel.Attribute
+  clazz: 	tipLiquidTransfer
+  id: 	TipLiquidTransfer_targetCavityIndex
+  modified: 	false
+  name: 	targetCavityIndex
+  propertyStyle: 	Bean
+  type: 	int
+  typeSignature: 	int
+
+- tipLiquidTransfer_status: 	org.fulib.classmodel.Attribute
+  clazz: 	tipLiquidTransfer
+  id: 	TipLiquidTransfer_status
+  modified: 	false
+  name: 	status
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- tipLiquidTransfer_job: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	tipLiquidTransfer
+  id: 	TipLiquidTransfer_job
+  modified: 	false
+  name: 	job
+  other: 	liquidTransferJob_tips
+  propertyStyle: 	Bean
+
+- liquidTransferJob_source: 	org.fulib.classmodel.Attribute
+  clazz: 	liquidTransferJob
+  id: 	LiquidTransferJob_source
+  modified: 	false
+  name: 	source
+  propertyStyle: 	Bean
+  type: 	Labware
+  typeSignature: 	Labware
+
+- liquidTransferJob_target: 	org.fulib.classmodel.Attribute
+  clazz: 	liquidTransferJob
+  id: 	LiquidTransferJob_target
+  modified: 	false
+  name: 	target
+  propertyStyle: 	Bean
+  type: 	Labware
+  typeSignature: 	Labware
+
+- liquidTransferJob_tips: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	liquidTransferJob
+  collectionType: 	c1
+  id: 	LiquidTransferJob_tips
+  modified: 	false
+  name: 	tips
+  other: 	tipLiquidTransfer_job
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
+
+- tubeRunner_barcodes: 	org.fulib.classmodel.Attribute
+  clazz: 	tubeRunner
+  collectionType: 	c1
+  id: 	TubeRunner_barcodes
+  modified: 	false
+  name: 	barcodes
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- labware_name: 	org.fulib.classmodel.Attribute
+  clazz: 	labware
+  id: 	Labware_name
+  modified: 	false
+  name: 	name
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- labware_jobCollection: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	labware
+  id: 	Labware_jobCollection
+  modified: 	false
+  name: 	jobCollection
+  other: 	jobCollection_labware
+  propertyStyle: 	Bean
+
+- jobCollection_labware: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	jobCollection
+  collectionType: 	c1
+  id: 	JobCollection_labware
+  modified: 	false
+  name: 	labware
+  other: 	labware_jobCollection
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
+
+- jobCollection_jobs: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	jobCollection
+  collectionType: 	c1
+  id: 	JobCollection_jobs
+  modified: 	false
+  name: 	jobs
+  other: 	job_jobCollection
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
 
 - addReagent_volume: 	org.fulib.classmodel.Attribute
   clazz: 	addReagent

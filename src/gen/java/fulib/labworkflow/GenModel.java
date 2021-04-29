@@ -75,7 +75,76 @@ public class GenModel implements ClassModelDecorator
       Reagent reagent;
    }
 
+   // lab model
+   class JobCollection {
+      @Link("jobCollection")
+      List<Job> jobs;
 
+      @Link("jobCollection")
+      List<Labware> labware;
+   }
+
+   class Job {
+      String state;
+      String protocolStepName;
+
+      @Link("jobs")
+      JobCollection jobCollection;
+
+      @Link("next")
+      Job previous;
+
+      @Link("previous")
+      Job next;
+   }
+
+   class Labware {
+      String name;
+
+      @Link("labware")
+      JobCollection jobCollection;
+   }
+
+   class Microplate extends Labware {
+
+   }
+
+   class Trough extends Labware {
+
+   }
+
+   class TubeRunner extends Labware {
+      List<String> barcodes;
+   }
+
+   class LiquidTransferJob extends Job {
+      Labware source;
+      Labware target;
+
+      @Link("job")
+      List<TipLiquidTransfer> tips;
+   }
+
+   class TipLiquidTransfer {
+      int sourceCavityIndex;
+      double volume;
+      int targetCavityIndex;
+      String status;
+
+      @Link("tips")
+      LiquidTransferJob job;
+   }
+
+   class IncubateJob extends Job {
+      double temperature;
+      int duration;
+      Microplate microplate;
+   }
+
+   class WashJob extends Job {
+      List<Integer> cavities;
+      Microplate microplate;
+   }
 
    @Override
    public void decorate(ClassModelManager mm)
