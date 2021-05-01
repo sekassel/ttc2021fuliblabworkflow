@@ -20,5 +20,11 @@ public class TestBasics
       assertThat(root.getSamples().size()).isEqualTo(12);
 
       FulibTools.objectDiagrams().dumpSVG("tmp/minimalAssay", root);
+
+      AssayToJobs assayToJobs = new AssayToJobs();
+      JobCollection jobCollection = assayToJobs.initial(root);
+
+      FulibTools.objectDiagrams().dumpSVG("tmp/minimalJobCollection", jobCollection);
+
    }
 }

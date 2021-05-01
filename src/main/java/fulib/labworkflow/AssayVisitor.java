@@ -36,8 +36,6 @@ public class AssayVisitor
       {
          Logger.getGlobal().severe(String.format("Don't know how to handle %s", tagName));
       }
-
-      System.out.println();
    }
 
    private void initMethodMap()

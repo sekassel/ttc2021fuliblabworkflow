@@ -169,4 +169,10 @@ public class JobCollection
       this.withoutLabware(new ArrayList<>(this.getLabware()));
       this.withoutJobs(new ArrayList<>(this.getJobs()));
    }
+
+   @Override
+   public String toString() // no fulib
+   {
+      return "JobCollection";
+   }
 }

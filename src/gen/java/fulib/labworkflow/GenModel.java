@@ -1,5 +1,7 @@
 package fulib.labworkflow;
 
+import org.fulib.Fulib;
+import org.fulib.FulibTools;
 import org.fulib.builder.ClassModelDecorator;
 import org.fulib.builder.ClassModelManager;
 import org.fulib.builder.reflect.Link;
@@ -35,6 +37,12 @@ public class GenModel implements ClassModelDecorator
 
       @Link("samples")
       JobRequest jobRequest;
+
+      @Link("samples")
+      TubeRunner tube;
+
+      @Link("samples")
+      Microplate plate;
    }
 
    class ProtocolStep {
@@ -112,7 +120,8 @@ public class GenModel implements ClassModelDecorator
    }
 
    class Microplate extends Labware {
-
+      @Link("plate")
+      List<Sample> samples;
    }
 
    class Trough extends Labware {
@@ -121,6 +130,9 @@ public class GenModel implements ClassModelDecorator
 
    class TubeRunner extends Labware {
       List<String> barcodes;
+
+      @Link("tube")
+      List<Sample> samples;
    }
 
    class LiquidTransferJob extends Job {

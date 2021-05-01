@@ -7,10 +7,14 @@ public class Sample
    public static final String PROPERTY_SAMPLE_ID = "sampleID";
    public static final String PROPERTY_STATE = "state";
    public static final String PROPERTY_JOB_REQUEST = "jobRequest";
+   public static final String PROPERTY_PLATE = "plate";
+   public static final String PROPERTY_TUBE = "tube";
    private String sampleID;
    private String state;
    private JobRequest jobRequest;
    protected PropertyChangeSupport listeners;
+   private Microplate plate;
+   private TubeRunner tube;
 
    public String getSampleID()
    {
@@ -75,6 +79,60 @@ public class Sample
       return this;
    }
 
+   public Microplate getPlate()
+   {
+      return this.plate;
+   }
+
+   public Sample setPlate(Microplate value)
+   {
+      if (this.plate == value)
+      {
+         return this;
+      }
+
+      final Microplate oldValue = this.plate;
+      if (this.plate != null)
+      {
+         this.plate = null;
+         oldValue.withoutSamples(this);
+      }
+      this.plate = value;
+      if (value != null)
+      {
+         value.withSamples(this);
+      }
+      this.firePropertyChange(PROPERTY_PLATE, oldValue, value);
+      return this;
+   }
+
+   public TubeRunner getTube()
+   {
+      return this.tube;
+   }
+
+   public Sample setTube(TubeRunner value)
+   {
+      if (this.tube == value)
+      {
+         return this;
+      }
+
+      final TubeRunner oldValue = this.tube;
+      if (this.tube != null)
+      {
+         this.tube = null;
+         oldValue.withoutSamples(this);
+      }
+      this.tube = value;
+      if (value != null)
+      {
+         value.withSamples(this);
+      }
+      this.firePropertyChange(PROPERTY_TUBE, oldValue, value);
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -105,6 +163,8 @@ public class Sample
 
    public void removeYou()
    {
+      this.setTube(null);
+      this.setPlate(null);
       this.setJobRequest(null);
    }
 }

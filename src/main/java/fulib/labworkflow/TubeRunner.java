@@ -7,7 +7,9 @@ import java.util.Collection;
 public class TubeRunner extends Labware
 {
    public static final String PROPERTY_BARCODES = "barcodes";
+   public static final String PROPERTY_SAMPLES = "samples";
    private List<String> barcodes;
+   private List<Sample> samples;
 
    public List<String> getBarcodes()
    {
@@ -72,11 +74,83 @@ public class TubeRunner extends Labware
       return this;
    }
 
+   public List<Sample> getSamples()
+   {
+      return this.samples != null ? Collections.unmodifiableList(this.samples) : Collections.emptyList();
+   }
+
+   public TubeRunner withSamples(Sample value)
+   {
+      if (this.samples == null)
+      {
+         this.samples = new ArrayList<>();
+      }
+      if (!this.samples.contains(value))
+      {
+         this.samples.add(value);
+         value.setTube(this);
+         this.firePropertyChange(PROPERTY_SAMPLES, null, value);
+      }
+      return this;
+   }
+
+   public TubeRunner withSamples(Sample... value)
+   {
+      for (final Sample item : value)
+      {
+         this.withSamples(item);
+      }
+      return this;
+   }
+
+   public TubeRunner withSamples(Collection<? extends Sample> value)
+   {
+      for (final Sample item : value)
+      {
+         this.withSamples(item);
+      }
+      return this;
+   }
+
+   public TubeRunner withoutSamples(Sample value)
+   {
+      if (this.samples != null && this.samples.remove(value))
+      {
+         value.setTube(null);
+         this.firePropertyChange(PROPERTY_SAMPLES, value, null);
+      }
+      return this;
+   }
+
+   public TubeRunner withoutSamples(Sample... value)
+   {
+      for (final Sample item : value)
+      {
+         this.withoutSamples(item);
+      }
+      return this;
+   }
+
+   public TubeRunner withoutSamples(Collection<? extends Sample> value)
+   {
+      for (final Sample item : value)
+      {
+         this.withoutSamples(item);
+      }
+      return this;
+   }
+
    @Override
-   public String toString()
+   public String toString() // no fulib
    {
       final StringBuilder result = new StringBuilder(super.toString());
-      result.append(' ').append(this.getBarcodes());
       return result.toString();
+   }
+
+   @Override
+   public void removeYou()
+   {
+      super.removeYou();
+      this.withoutSamples(new ArrayList<>(this.getSamples()));
    }
 }
