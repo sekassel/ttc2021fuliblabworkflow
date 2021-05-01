@@ -9,12 +9,14 @@ public class Job
    public static final String PROPERTY_PREVIOUS = "previous";
    public static final String PROPERTY_NEXT = "next";
    public static final String PROPERTY_JOB_COLLECTION = "jobCollection";
+   public static final String PROPERTY_MICROPLATE = "microplate";
    private String state;
    private String protocolStepName;
    private Job previous;
    private Job next;
    protected PropertyChangeSupport listeners;
    private JobCollection jobCollection;
+   private Microplate microplate;
 
    public String getState()
    {
@@ -133,6 +135,33 @@ public class Job
       return this;
    }
 
+   public Microplate getMicroplate()
+   {
+      return this.microplate;
+   }
+
+   public Job setMicroplate(Microplate value)
+   {
+      if (this.microplate == value)
+      {
+         return this;
+      }
+
+      final Microplate oldValue = this.microplate;
+      if (this.microplate != null)
+      {
+         this.microplate = null;
+         oldValue.withoutJobs(this);
+      }
+      this.microplate = value;
+      if (value != null)
+      {
+         value.withJobs(this);
+      }
+      this.firePropertyChange(PROPERTY_MICROPLATE, oldValue, value);
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -163,6 +192,7 @@ public class Job
 
    public void removeYou()
    {
+      this.setMicroplate(null);
       this.setJobCollection(null);
       this.setPrevious(null);
       this.setNext(null);

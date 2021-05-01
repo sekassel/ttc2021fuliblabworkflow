@@ -5,10 +5,8 @@ public class IncubateJob extends Job
 {
    public static final String PROPERTY_TEMPERATURE = "temperature";
    public static final String PROPERTY_DURATION = "duration";
-   public static final String PROPERTY_MICROPLATE = "microplate";
    private double temperature;
    private int duration;
-   private Microplate microplate;
 
    public double getTemperature()
    {
@@ -43,24 +41,6 @@ public class IncubateJob extends Job
       final int oldValue = this.duration;
       this.duration = value;
       this.firePropertyChange(PROPERTY_DURATION, oldValue, value);
-      return this;
-   }
-
-   public Microplate getMicroplate()
-   {
-      return this.microplate;
-   }
-
-   public IncubateJob setMicroplate(Microplate value)
-   {
-      if (Objects.equals(value, this.microplate))
-      {
-         return this;
-      }
-
-      final Microplate oldValue = this.microplate;
-      this.microplate = value;
-      this.firePropertyChange(PROPERTY_MICROPLATE, oldValue, value);
       return this;
    }
 }

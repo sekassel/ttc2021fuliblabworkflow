@@ -7,7 +7,9 @@ import java.util.Collection;
 public class Microplate extends Labware
 {
    public static final String PROPERTY_SAMPLES = "samples";
+   public static final String PROPERTY_JOBS = "jobs";
    private List<Sample> samples;
+   private List<Job> jobs;
 
    public List<Sample> getSamples()
    {
@@ -75,10 +77,77 @@ public class Microplate extends Labware
       return this;
    }
 
+   public List<Job> getJobs()
+   {
+      return this.jobs != null ? Collections.unmodifiableList(this.jobs) : Collections.emptyList();
+   }
+
+   public Microplate withJobs(Job value)
+   {
+      if (this.jobs == null)
+      {
+         this.jobs = new ArrayList<>();
+      }
+      if (!this.jobs.contains(value))
+      {
+         this.jobs.add(value);
+         value.setMicroplate(this);
+         this.firePropertyChange(PROPERTY_JOBS, null, value);
+      }
+      return this;
+   }
+
+   public Microplate withJobs(Job... value)
+   {
+      for (final Job item : value)
+      {
+         this.withJobs(item);
+      }
+      return this;
+   }
+
+   public Microplate withJobs(Collection<? extends Job> value)
+   {
+      for (final Job item : value)
+      {
+         this.withJobs(item);
+      }
+      return this;
+   }
+
+   public Microplate withoutJobs(Job value)
+   {
+      if (this.jobs != null && this.jobs.remove(value))
+      {
+         value.setMicroplate(null);
+         this.firePropertyChange(PROPERTY_JOBS, value, null);
+      }
+      return this;
+   }
+
+   public Microplate withoutJobs(Job... value)
+   {
+      for (final Job item : value)
+      {
+         this.withoutJobs(item);
+      }
+      return this;
+   }
+
+   public Microplate withoutJobs(Collection<? extends Job> value)
+   {
+      for (final Job item : value)
+      {
+         this.withoutJobs(item);
+      }
+      return this;
+   }
+
    @Override
    public void removeYou()
    {
       super.removeYou();
       this.withoutSamples(new ArrayList<>(this.getSamples()));
+      this.withoutJobs(new ArrayList<>(this.getJobs()));
    }
 }

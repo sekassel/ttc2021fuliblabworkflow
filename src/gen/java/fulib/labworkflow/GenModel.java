@@ -43,6 +43,9 @@ public class GenModel implements ClassModelDecorator
 
       @Link("samples")
       Microplate plate;
+
+      @Link("sample")
+      List<TipLiquidTransfer> tips;
    }
 
    class ProtocolStep {
@@ -110,6 +113,9 @@ public class GenModel implements ClassModelDecorator
 
       @Link("previous")
       Job next;
+
+      @Link("jobs")
+      Microplate microplate;
    }
 
    class Labware {
@@ -122,6 +128,9 @@ public class GenModel implements ClassModelDecorator
    class Microplate extends Labware {
       @Link("plate")
       List<Sample> samples;
+
+      @Link("microplate")
+      List<Job> jobs;
    }
 
    class Trough extends Labware {
@@ -151,17 +160,18 @@ public class GenModel implements ClassModelDecorator
 
       @Link("tips")
       LiquidTransferJob job;
+
+      @Link("tips")
+      Sample sample;
    }
 
    class IncubateJob extends Job {
       double temperature;
       int duration;
-      Microplate microplate;
    }
 
    class WashJob extends Job {
       List<Integer> cavities;
-      Microplate microplate;
    }
 
    @Override

@@ -1,268 +1,278 @@
-<svg width="1376px" height="522px"
- viewBox="0.00 0.00 1376.00 522.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 518)">
+<svg width="967px" height="593px"
+ viewBox="0.00 0.00 966.68 593.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 589)">
 <title>fulib.labworkflow</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-518 1372,-518 1372,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-589 962.68,-589 962.68,4 -4,4"/>
 <!-- AddReagent -->
 <g id="node1" class="node"><title>AddReagent</title>
-<polygon fill="none" stroke="black" points="369,-32.5 369,-53.5 461,-53.5 461,-32.5 369,-32.5"/>
-<text text-anchor="start" x="380" y="-39.3" font-family="Times New Roman,serif" font-size="14.00">AddReagent</text>
-<polygon fill="none" stroke="black" points="369,-11.5 369,-32.5 461,-32.5 461,-11.5 369,-11.5"/>
-<text text-anchor="start" x="372" y="-18.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
+<polygon fill="none" stroke="black" points="465,-133.5 465,-154.5 557,-154.5 557,-133.5 465,-133.5"/>
+<text text-anchor="start" x="476" y="-140.3" font-family="Times New Roman,serif" font-size="14.00">AddReagent</text>
+<polygon fill="none" stroke="black" points="465,-112.5 465,-133.5 557,-133.5 557,-112.5 465,-112.5"/>
+<text text-anchor="start" x="468" y="-119.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
 </g>
 <!-- ProtocolStep -->
 <g id="node12" class="node"><title>ProtocolStep</title>
-<polygon fill="none" stroke="black" points="257,-133.5 257,-154.5 338,-154.5 338,-133.5 257,-133.5"/>
-<text text-anchor="start" x="260" y="-140.3" font-family="Times New Roman,serif" font-size="14.00">ProtocolStep</text>
-<polygon fill="none" stroke="black" points="257,-112.5 257,-133.5 338,-133.5 338,-112.5 257,-112.5"/>
-<text text-anchor="start" x="272" y="-119.3" font-family="Times New Roman,serif" font-size="14.00">id :String</text>
+<polygon fill="none" stroke="black" points="602,-234.5 602,-255.5 683,-255.5 683,-234.5 602,-234.5"/>
+<text text-anchor="start" x="605" y="-241.3" font-family="Times New Roman,serif" font-size="14.00">ProtocolStep</text>
+<polygon fill="none" stroke="black" points="602,-213.5 602,-234.5 683,-234.5 683,-213.5 602,-213.5"/>
+<text text-anchor="start" x="617" y="-220.3" font-family="Times New Roman,serif" font-size="14.00">id :String</text>
 </g>
 <!-- AddReagent&#45;&gt;ProtocolStep -->
-<g id="edge13" class="edge"><title>AddReagent&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M386.134,-57.7181C370.42,-70.9021 350.807,-87.3568 333.983,-101.472"/>
-<polygon fill="none" stroke="black" points="331.388,-99.0801 325.977,-108.189 335.888,-104.443 331.388,-99.0801"/>
+<g id="edge15" class="edge"><title>AddReagent&#45;&gt;ProtocolStep</title>
+<path fill="none" stroke="black" d="M543.046,-158.718C560.73,-172.082 582.86,-188.806 601.705,-203.048"/>
+<polygon fill="none" stroke="black" points="599.742,-205.952 609.831,-209.189 603.963,-200.367 599.742,-205.952"/>
 </g>
 <!-- Reagent -->
 <g id="node13" class="node"><title>Reagent</title>
-<polygon fill="none" stroke="black" points="390,-140.5 390,-161.5 474,-161.5 474,-140.5 390,-140.5"/>
-<text text-anchor="start" x="409" y="-147.3" font-family="Times New Roman,serif" font-size="14.00">Reagent</text>
-<polygon fill="none" stroke="black" points="390,-104.5 390,-140.5 474,-140.5 474,-104.5 390,-104.5"/>
-<text text-anchor="start" x="393" y="-126.3" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
-<text text-anchor="start" x="393" y="-111.3" font-family="Times New Roman,serif" font-size="14.00">source :String</text>
+<polygon fill="none" stroke="black" points="435,-241.5 435,-262.5 519,-262.5 519,-241.5 435,-241.5"/>
+<text text-anchor="start" x="454" y="-248.3" font-family="Times New Roman,serif" font-size="14.00">Reagent</text>
+<polygon fill="none" stroke="black" points="435,-205.5 435,-241.5 519,-241.5 519,-205.5 435,-205.5"/>
+<text text-anchor="start" x="438" y="-227.3" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
+<text text-anchor="start" x="438" y="-212.3" font-family="Times New Roman,serif" font-size="14.00">source :String</text>
 </g>
 <!-- AddReagent&#45;&gt;Reagent -->
 <g id="edge1" class="edge"><title>AddReagent&#45;&gt;Reagent</title>
-<path fill="none" stroke="black" d="M419.159,-57.7181C421.38,-70.6552 424.143,-86.7417 426.535,-100.677"/>
-<text text-anchor="middle" x="406.535" y="-89.4767" font-family="Times New Roman,serif" font-size="14.00">reagent</text>
-<text text-anchor="middle" x="364.659" y="-61.5181" font-family="Times New Roman,serif" font-size="14.00">addReagentSteps *</text>
+<path fill="none" stroke="black" d="M502.683,-158.718C498.24,-171.655 492.715,-187.742 487.929,-201.677"/>
+<text text-anchor="middle" x="467.929" y="-190.477" font-family="Times New Roman,serif" font-size="14.00">reagent</text>
+<text text-anchor="middle" x="448.183" y="-162.518" font-family="Times New Roman,serif" font-size="14.00">addReagentSteps *</text>
 </g>
 <!-- Assay -->
 <g id="node2" class="node"><title>Assay</title>
-<polygon fill="none" stroke="black" points="495,-32.5 495,-53.5 571,-53.5 571,-32.5 495,-32.5"/>
-<text text-anchor="start" x="515.5" y="-39.3" font-family="Times New Roman,serif" font-size="14.00">Assay</text>
-<polygon fill="none" stroke="black" points="495,-11.5 495,-32.5 571,-32.5 571,-11.5 495,-11.5"/>
-<text text-anchor="start" x="498" y="-18.3" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
+<polygon fill="none" stroke="black" points="355,-133.5 355,-154.5 431,-154.5 431,-133.5 355,-133.5"/>
+<text text-anchor="start" x="375.5" y="-140.3" font-family="Times New Roman,serif" font-size="14.00">Assay</text>
+<polygon fill="none" stroke="black" points="355,-112.5 355,-133.5 431,-133.5 431,-112.5 355,-112.5"/>
+<text text-anchor="start" x="358" y="-119.3" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
 </g>
 <!-- JobRequest -->
 <g id="node8" class="node"><title>JobRequest</title>
-<polygon fill="none" stroke="black" points="610,-125.5 610,-146.5 683,-146.5 683,-125.5 610,-125.5"/>
-<text text-anchor="start" x="613" y="-132.3" font-family="Times New Roman,serif" font-size="14.00">JobRequest</text>
-<polygon fill="none" stroke="black" points="610,-119.5 610,-125.5 683,-125.5 683,-119.5 610,-119.5"/>
+<polygon fill="none" stroke="black" points="326,-226.5 326,-247.5 399,-247.5 399,-226.5 326,-226.5"/>
+<text text-anchor="start" x="329" y="-233.3" font-family="Times New Roman,serif" font-size="14.00">JobRequest</text>
+<polygon fill="none" stroke="black" points="326,-220.5 326,-226.5 399,-226.5 399,-220.5 326,-220.5"/>
 </g>
 <!-- Assay&#45;&gt;JobRequest -->
 <g id="edge2" class="edge"><title>Assay&#45;&gt;JobRequest</title>
-<path fill="none" stroke="black" d="M560.643,-57.7181C581.029,-75.5782 608.266,-99.4406 626.434,-115.358"/>
-<text text-anchor="middle" x="594.434" y="-104.158" font-family="Times New Roman,serif" font-size="14.00">jobRequest</text>
-<text text-anchor="middle" x="545.143" y="-61.5181" font-family="Times New Roman,serif" font-size="14.00">assay</text>
+<path fill="none" stroke="black" d="M385.417,-158.718C379.824,-176.578 372.352,-200.441 367.368,-216.358"/>
+<text text-anchor="middle" x="335.368" y="-205.158" font-family="Times New Roman,serif" font-size="14.00">jobRequest</text>
+<text text-anchor="middle" x="369.917" y="-162.518" font-family="Times New Roman,serif" font-size="14.00">assay</text>
 </g>
 <!-- Assay&#45;&gt;ProtocolStep -->
 <g id="edge3" class="edge"><title>Assay&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M492.908,-57.6169C487.958,-60.249 482.912,-62.7758 478,-65 433.06,-85.3506 419.143,-83.5469 373,-101 364.183,-104.335 354.861,-108.044 345.88,-111.713"/>
-<text text-anchor="middle" x="365.88" y="-100.513" font-family="Times New Roman,serif" font-size="14.00">steps *</text>
-<text text-anchor="middle" x="477.408" y="-61.4169" font-family="Times New Roman,serif" font-size="14.00">assay</text>
+<path fill="none" stroke="black" d="M433.102,-158.595C438.05,-161.231 443.093,-163.765 448,-166 496.029,-187.881 553.365,-207.022 593.194,-219.279"/>
+<text text-anchor="middle" x="573.194" y="-208.079" font-family="Times New Roman,serif" font-size="14.00">steps *</text>
+<text text-anchor="middle" x="448.602" y="-147.395" font-family="Times New Roman,serif" font-size="14.00">assay</text>
 </g>
 <!-- Assay&#45;&gt;Reagent -->
 <g id="edge4" class="edge"><title>Assay&#45;&gt;Reagent</title>
-<path fill="none" stroke="black" d="M508.293,-57.7181C495.094,-70.6552 478.683,-86.7417 464.466,-100.677"/>
-<text text-anchor="middle" x="492.966" y="-89.4767" font-family="Times New Roman,serif" font-size="14.00">reagents *</text>
-<text text-anchor="middle" x="508.293" y="-61.5181" font-family="Times New Roman,serif" font-size="14.00">assay</text>
+<path fill="none" stroke="black" d="M413.549,-158.718C424.526,-171.655 438.175,-187.742 449.998,-201.677"/>
+<text text-anchor="middle" x="421.498" y="-190.477" font-family="Times New Roman,serif" font-size="14.00">reagents *</text>
+<text text-anchor="middle" x="398.049" y="-162.518" font-family="Times New Roman,serif" font-size="14.00">assay</text>
 </g>
 <!-- DistributeSample -->
 <g id="node3" class="node"><title>DistributeSample</title>
-<polygon fill="none" stroke="black" points="8,-32.5 8,-53.5 110,-53.5 110,-32.5 8,-32.5"/>
-<text text-anchor="start" x="11" y="-39.3" font-family="Times New Roman,serif" font-size="14.00">DistributeSample</text>
-<polygon fill="none" stroke="black" points="8,-11.5 8,-32.5 110,-32.5 110,-11.5 8,-11.5"/>
-<text text-anchor="start" x="16" y="-18.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
+<polygon fill="none" stroke="black" points="591,-133.5 591,-154.5 693,-154.5 693,-133.5 591,-133.5"/>
+<text text-anchor="start" x="594" y="-140.3" font-family="Times New Roman,serif" font-size="14.00">DistributeSample</text>
+<polygon fill="none" stroke="black" points="591,-112.5 591,-133.5 693,-133.5 693,-112.5 591,-112.5"/>
+<text text-anchor="start" x="599" y="-119.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
 </g>
 <!-- DistributeSample&#45;&gt;ProtocolStep -->
-<g id="edge14" class="edge"><title>DistributeSample&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M110.102,-57.5439C115.783,-60.1061 121.501,-62.6369 127,-65 163.91,-80.8621 205.857,-97.5314 238.848,-110.336"/>
-<polygon fill="none" stroke="black" points="237.753,-113.666 248.342,-114.011 240.28,-107.137 237.753,-113.666"/>
+<g id="edge16" class="edge"><title>DistributeSample&#45;&gt;ProtocolStep</title>
+<path fill="none" stroke="black" d="M642,-158.718C642,-170.823 642,-185.686 642,-198.963"/>
+<polygon fill="none" stroke="black" points="638.5,-199.189 642,-209.189 645.5,-199.189 638.5,-199.189"/>
 </g>
 <!-- Incubate -->
 <g id="node4" class="node"><title>Incubate</title>
-<polygon fill="none" stroke="black" points="145,-39.5 145,-60.5 262,-60.5 262,-39.5 145,-39.5"/>
-<text text-anchor="start" x="179" y="-46.3" font-family="Times New Roman,serif" font-size="14.00">Incubate</text>
-<polygon fill="none" stroke="black" points="145,-3.5 145,-39.5 262,-39.5 262,-3.5 145,-3.5"/>
-<text text-anchor="start" x="148" y="-25.3" font-family="Times New Roman,serif" font-size="14.00">temperature :double</text>
-<text text-anchor="start" x="148" y="-10.3" font-family="Times New Roman,serif" font-size="14.00">duration :int</text>
+<polygon fill="none" stroke="black" points="728,-140.5 728,-161.5 845,-161.5 845,-140.5 728,-140.5"/>
+<text text-anchor="start" x="762" y="-147.3" font-family="Times New Roman,serif" font-size="14.00">Incubate</text>
+<polygon fill="none" stroke="black" points="728,-104.5 728,-140.5 845,-140.5 845,-104.5 728,-104.5"/>
+<text text-anchor="start" x="731" y="-126.3" font-family="Times New Roman,serif" font-size="14.00">temperature :double</text>
+<text text-anchor="start" x="731" y="-111.3" font-family="Times New Roman,serif" font-size="14.00">duration :int</text>
 </g>
 <!-- Incubate&#45;&gt;ProtocolStep -->
-<g id="edge15" class="edge"><title>Incubate&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M233.001,-65.0964C243.931,-76.6085 256.28,-89.6138 267.194,-101.108"/>
-<polygon fill="none" stroke="black" points="264.705,-103.571 274.129,-108.412 269.782,-98.7506 264.705,-103.571"/>
+<g id="edge17" class="edge"><title>Incubate&#45;&gt;ProtocolStep</title>
+<path fill="none" stroke="black" d="M740.042,-166.096C722.499,-178.157 702.573,-191.856 685.288,-203.74"/>
+<polygon fill="none" stroke="black" points="683.294,-200.863 677.036,-209.412 687.26,-206.631 683.294,-200.863"/>
 </g>
 <!-- IncubateJob -->
 <g id="node5" class="node"><title>IncubateJob</title>
-<polygon fill="none" stroke="black" points="1073,-358 1073,-379 1205,-379 1205,-358 1073,-358"/>
-<text text-anchor="start" x="1104.5" y="-364.8" font-family="Times New Roman,serif" font-size="14.00">IncubateJob</text>
-<polygon fill="none" stroke="black" points="1073,-307 1073,-358 1205,-358 1205,-307 1073,-307"/>
-<text text-anchor="start" x="1076" y="-343.8" font-family="Times New Roman,serif" font-size="14.00">temperature :double</text>
-<text text-anchor="start" x="1076" y="-328.8" font-family="Times New Roman,serif" font-size="14.00">duration :int</text>
-<text text-anchor="start" x="1076" y="-313.8" font-family="Times New Roman,serif" font-size="14.00">microplate :Microplate</text>
+<polygon fill="none" stroke="black" points="178,-39.5 178,-60.5 295,-60.5 295,-39.5 178,-39.5"/>
+<text text-anchor="start" x="202" y="-46.3" font-family="Times New Roman,serif" font-size="14.00">IncubateJob</text>
+<polygon fill="none" stroke="black" points="178,-3.5 178,-39.5 295,-39.5 295,-3.5 178,-3.5"/>
+<text text-anchor="start" x="181" y="-25.3" font-family="Times New Roman,serif" font-size="14.00">temperature :double</text>
+<text text-anchor="start" x="181" y="-10.3" font-family="Times New Roman,serif" font-size="14.00">duration :int</text>
 </g>
 <!-- Job -->
 <g id="node6" class="node"><title>Job</title>
-<polygon fill="none" stroke="black" points="960,-473.5 960,-494.5 1112,-494.5 1112,-473.5 960,-473.5"/>
-<text text-anchor="start" x="1025.5" y="-480.3" font-family="Times New Roman,serif" font-size="14.00">Job</text>
-<polygon fill="none" stroke="black" points="960,-437.5 960,-473.5 1112,-473.5 1112,-437.5 960,-437.5"/>
-<text text-anchor="start" x="963" y="-459.3" font-family="Times New Roman,serif" font-size="14.00">state :String</text>
-<text text-anchor="start" x="963" y="-444.3" font-family="Times New Roman,serif" font-size="14.00">protocolStepName :String</text>
+<polygon fill="none" stroke="black" points="151,-140.5 151,-161.5 303,-161.5 303,-140.5 151,-140.5"/>
+<text text-anchor="start" x="216.5" y="-147.3" font-family="Times New Roman,serif" font-size="14.00">Job</text>
+<polygon fill="none" stroke="black" points="151,-104.5 151,-140.5 303,-140.5 303,-104.5 151,-104.5"/>
+<text text-anchor="start" x="154" y="-126.3" font-family="Times New Roman,serif" font-size="14.00">state :String</text>
+<text text-anchor="start" x="154" y="-111.3" font-family="Times New Roman,serif" font-size="14.00">protocolStepName :String</text>
 </g>
 <!-- IncubateJob&#45;&gt;Job -->
-<g id="edge16" class="edge"><title>IncubateJob&#45;&gt;Job</title>
-<path fill="none" stroke="black" d="M1105.84,-383.112C1094.24,-396.798 1081.21,-412.169 1069.57,-425.895"/>
-<polygon fill="none" stroke="black" points="1066.7,-423.87 1062.91,-433.761 1072.04,-428.396 1066.7,-423.87"/>
+<g id="edge18" class="edge"><title>IncubateJob&#45;&gt;Job</title>
+<path fill="none" stroke="black" d="M233.128,-65.0964C232.389,-73.223 231.582,-82.0936 230.804,-90.6515"/>
+<polygon fill="none" stroke="black" points="227.296,-90.5884 229.876,-100.864 234.267,-91.2222 227.296,-90.5884"/>
 </g>
 <!-- Job&#45;&gt;Job -->
-<g id="edge9" class="edge"><title>Job&#45;&gt;Job</title>
-<path fill="none" stroke="black" d="M1120.03,-446.452C1130.85,-449.929 1138,-456.611 1138,-466.5 1138,-476.389 1130.85,-483.071 1120.03,-486.548"/>
-<text text-anchor="middle" x="1144.53" y="-475.348" font-family="Times New Roman,serif" font-size="14.00">previous</text>
-<text text-anchor="middle" x="1132.03" y="-435.252" font-family="Times New Roman,serif" font-size="14.00">next</text>
-</g>
-<!-- JobCollection -->
-<g id="node7" class="node"><title>JobCollection</title>
-<polygon fill="none" stroke="black" points="789,-335 789,-356 873,-356 873,-335 789,-335"/>
-<text text-anchor="start" x="792" y="-341.8" font-family="Times New Roman,serif" font-size="14.00">JobCollection</text>
-<polygon fill="none" stroke="black" points="789,-329 789,-335 873,-335 873,-329 789,-329"/>
-</g>
-<!-- JobCollection&#45;&gt;Job -->
-<g id="edge6" class="edge"><title>JobCollection&#45;&gt;Job</title>
-<path fill="none" stroke="black" d="M856.017,-361.092C866.421,-368.055 878.689,-376.078 890,-383 918.557,-400.478 950.92,-418.901 977.907,-433.893"/>
-<text text-anchor="middle" x="960.407" y="-422.693" font-family="Times New Roman,serif" font-size="14.00">jobs *</text>
-<text text-anchor="middle" x="856.017" y="-364.892" font-family="Times New Roman,serif" font-size="14.00">jobCollection</text>
-</g>
-<!-- Labware -->
-<g id="node9" class="node"><title>Labware</title>
-<polygon fill="none" stroke="black" points="586,-466.5 586,-487.5 662,-487.5 662,-466.5 586,-466.5"/>
-<text text-anchor="start" x="599.5" y="-473.3" font-family="Times New Roman,serif" font-size="14.00">Labware</text>
-<polygon fill="none" stroke="black" points="586,-445.5 586,-466.5 662,-466.5 662,-445.5 586,-445.5"/>
-<text text-anchor="start" x="589" y="-452.3" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
-</g>
-<!-- JobCollection&#45;&gt;Labware -->
-<g id="edge7" class="edge"><title>JobCollection&#45;&gt;Labware</title>
-<path fill="none" stroke="black" d="M806.003,-361.125C795.602,-368.093 783.331,-376.111 772,-383 738.067,-403.632 698.766,-425.446 669.194,-441.458"/>
-<text text-anchor="middle" x="642.194" y="-430.258" font-family="Times New Roman,serif" font-size="14.00">labware *</text>
-<text text-anchor="middle" x="768.003" y="-364.925" font-family="Times New Roman,serif" font-size="14.00">jobCollection</text>
-</g>
-<!-- Sample -->
-<g id="node14" class="node"><title>Sample</title>
-<polygon fill="none" stroke="black" points="596,-241.5 596,-262.5 696,-262.5 696,-241.5 596,-241.5"/>
-<text text-anchor="start" x="625" y="-248.3" font-family="Times New Roman,serif" font-size="14.00">Sample</text>
-<polygon fill="none" stroke="black" points="596,-205.5 596,-241.5 696,-241.5 696,-205.5 596,-205.5"/>
-<text text-anchor="start" x="599" y="-227.3" font-family="Times New Roman,serif" font-size="14.00">sampleID :String</text>
-<text text-anchor="start" x="599" y="-212.3" font-family="Times New Roman,serif" font-size="14.00">state :String</text>
-</g>
-<!-- JobRequest&#45;&gt;Sample -->
-<g id="edge8" class="edge"><title>JobRequest&#45;&gt;Sample</title>
-<path fill="none" stroke="black" d="M646,-151.744C646,-165.483 646,-185.094 646,-201.665"/>
-<text text-anchor="middle" x="618" y="-190.465" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
-<text text-anchor="middle" x="614" y="-155.544" font-family="Times New Roman,serif" font-size="14.00">jobRequest</text>
-</g>
-<!-- LiquidTransferJob -->
-<g id="node10" class="node"><title>LiquidTransferJob</title>
-<polygon fill="none" stroke="black" points="1239,-350 1239,-371 1349,-371 1349,-350 1239,-350"/>
-<text text-anchor="start" x="1242" y="-356.8" font-family="Times New Roman,serif" font-size="14.00">LiquidTransferJob</text>
-<polygon fill="none" stroke="black" points="1239,-314 1239,-350 1349,-350 1349,-314 1239,-314"/>
-<text text-anchor="start" x="1247.5" y="-335.8" font-family="Times New Roman,serif" font-size="14.00">source :Labware</text>
-<text text-anchor="start" x="1247.5" y="-320.8" font-family="Times New Roman,serif" font-size="14.00">target :Labware</text>
-</g>
-<!-- LiquidTransferJob&#45;&gt;Job -->
-<g id="edge17" class="edge"><title>LiquidTransferJob&#45;&gt;Job</title>
-<path fill="none" stroke="black" d="M1236.44,-375.696C1231.58,-378.215 1226.72,-380.679 1222,-383 1189.11,-399.172 1152.32,-415.787 1120.21,-429.83"/>
-<polygon fill="none" stroke="black" points="1118.61,-426.707 1110.84,-433.91 1121.4,-433.125 1118.61,-426.707"/>
-</g>
-<!-- TipLiquidTransfer -->
-<g id="node15" class="node"><title>TipLiquidTransfer</title>
-<polygon fill="none" stroke="black" points="1228,-488.5 1228,-509.5 1360,-509.5 1360,-488.5 1228,-488.5"/>
-<text text-anchor="start" x="1242.5" y="-495.3" font-family="Times New Roman,serif" font-size="14.00">TipLiquidTransfer</text>
-<polygon fill="none" stroke="black" points="1228,-422.5 1228,-488.5 1360,-488.5 1360,-422.5 1228,-422.5"/>
-<text text-anchor="start" x="1231" y="-474.3" font-family="Times New Roman,serif" font-size="14.00">sourceCavityIndex :int</text>
-<text text-anchor="start" x="1231" y="-459.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
-<text text-anchor="start" x="1231" y="-444.3" font-family="Times New Roman,serif" font-size="14.00">targetCavityIndex :int</text>
-<text text-anchor="start" x="1231" y="-429.3" font-family="Times New Roman,serif" font-size="14.00">status :String</text>
-</g>
-<!-- LiquidTransferJob&#45;&gt;TipLiquidTransfer -->
-<g id="edge5" class="edge"><title>LiquidTransferJob&#45;&gt;TipLiquidTransfer</title>
-<path fill="none" stroke="black" d="M1294,-375.606C1294,-388.824 1294,-404.456 1294,-418.946"/>
-<text text-anchor="middle" x="1278.5" y="-407.746" font-family="Times New Roman,serif" font-size="14.00">tips *</text>
-<text text-anchor="middle" x="1284.5" y="-379.406" font-family="Times New Roman,serif" font-size="14.00">job</text>
+<g id="edge10" class="edge"><title>Job&#45;&gt;Job</title>
+<path fill="none" stroke="black" d="M311.032,-117.067C321.852,-119.917 329,-125.395 329,-133.5 329,-141.605 321.852,-147.083 311.032,-149.933"/>
+<text text-anchor="middle" x="335.532" y="-138.733" font-family="Times New Roman,serif" font-size="14.00">previous</text>
+<text text-anchor="middle" x="323.032" y="-120.867" font-family="Times New Roman,serif" font-size="14.00">next</text>
 </g>
 <!-- Microplate -->
 <g id="node11" class="node"><title>Microplate</title>
-<polygon fill="none" stroke="black" points="509,-125.5 509,-146.5 576,-146.5 576,-125.5 509,-125.5"/>
-<text text-anchor="start" x="512" y="-132.3" font-family="Times New Roman,serif" font-size="14.00">Microplate</text>
-<polygon fill="none" stroke="black" points="509,-119.5 509,-125.5 576,-125.5 576,-119.5 509,-119.5"/>
+<polygon fill="none" stroke="black" points="225,-226.5 225,-247.5 292,-247.5 292,-226.5 225,-226.5"/>
+<text text-anchor="start" x="228" y="-233.3" font-family="Times New Roman,serif" font-size="14.00">Microplate</text>
+<polygon fill="none" stroke="black" points="225,-220.5 225,-226.5 292,-226.5 292,-220.5 225,-220.5"/>
+</g>
+<!-- Job&#45;&gt;Microplate -->
+<g id="edge9" class="edge"><title>Job&#45;&gt;Microplate</title>
+<path fill="none" stroke="black" d="M236.894,-166.096C242.103,-182.733 248.289,-202.489 252.613,-216.295"/>
+<text text-anchor="middle" x="223.113" y="-205.095" font-family="Times New Roman,serif" font-size="14.00">microplate</text>
+<text text-anchor="middle" x="219.394" y="-169.896" font-family="Times New Roman,serif" font-size="14.00">jobs *</text>
+</g>
+<!-- JobCollection -->
+<g id="node7" class="node"><title>JobCollection</title>
+<polygon fill="none" stroke="black" points="702,-24.5 702,-45.5 786,-45.5 786,-24.5 702,-24.5"/>
+<text text-anchor="start" x="705" y="-31.3" font-family="Times New Roman,serif" font-size="14.00">JobCollection</text>
+<polygon fill="none" stroke="black" points="702,-18.5 702,-24.5 786,-24.5 786,-18.5 702,-18.5"/>
+</g>
+<!-- JobCollection&#45;&gt;Job -->
+<g id="edge6" class="edge"><title>JobCollection&#45;&gt;Job</title>
+<path fill="none" stroke="black" d="M693.966,-39.9827C616.982,-50.3692 465.068,-72.501 338,-101 329.302,-102.951 320.274,-105.175 311.293,-107.519"/>
+<text text-anchor="middle" x="328.793" y="-96.3192" font-family="Times New Roman,serif" font-size="14.00">jobs *</text>
+<text text-anchor="middle" x="655.966" y="-28.7827" font-family="Times New Roman,serif" font-size="14.00">jobCollection</text>
+</g>
+<!-- Labware -->
+<g id="node9" class="node"><title>Labware</title>
+<polygon fill="none" stroke="black" points="272,-560 272,-581 348,-581 348,-560 272,-560"/>
+<text text-anchor="start" x="285.5" y="-566.8" font-family="Times New Roman,serif" font-size="14.00">Labware</text>
+<polygon fill="none" stroke="black" points="272,-539 272,-560 348,-560 348,-539 272,-539"/>
+<text text-anchor="start" x="275" y="-545.8" font-family="Times New Roman,serif" font-size="14.00">name :String</text>
+</g>
+<!-- JobCollection&#45;&gt;Labware -->
+<g id="edge7" class="edge"><title>JobCollection&#45;&gt;Labware</title>
+<path fill="none" stroke="black" d="M794.019,-37.1026C838.113,-43.0946 900.549,-58.981 935,-101 972.72,-147.005 954,-174.009 954,-233.5 954,-233.5 954,-233.5 954,-336.5 954,-463.145 503.452,-533.594 356.056,-553.253"/>
+<text text-anchor="middle" x="383.056" y="-542.053" font-family="Times New Roman,serif" font-size="14.00">labware *</text>
+<text text-anchor="middle" x="832.019" y="-25.9026" font-family="Times New Roman,serif" font-size="14.00">jobCollection</text>
+</g>
+<!-- Sample -->
+<g id="node14" class="node"><title>Sample</title>
+<polygon fill="none" stroke="black" points="303,-342.5 303,-363.5 403,-363.5 403,-342.5 303,-342.5"/>
+<text text-anchor="start" x="332" y="-349.3" font-family="Times New Roman,serif" font-size="14.00">Sample</text>
+<polygon fill="none" stroke="black" points="303,-306.5 303,-342.5 403,-342.5 403,-306.5 303,-306.5"/>
+<text text-anchor="start" x="306" y="-328.3" font-family="Times New Roman,serif" font-size="14.00">sampleID :String</text>
+<text text-anchor="start" x="306" y="-313.3" font-family="Times New Roman,serif" font-size="14.00">state :String</text>
+</g>
+<!-- JobRequest&#45;&gt;Sample -->
+<g id="edge8" class="edge"><title>JobRequest&#45;&gt;Sample</title>
+<path fill="none" stroke="black" d="M360.432,-252.744C359.183,-266.483 357.401,-286.094 355.894,-302.665"/>
+<text text-anchor="middle" x="327.894" y="-291.465" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
+<text text-anchor="middle" x="328.432" y="-256.544" font-family="Times New Roman,serif" font-size="14.00">jobRequest</text>
+</g>
+<!-- LiquidTransferJob -->
+<g id="node10" class="node"><title>LiquidTransferJob</title>
+<polygon fill="none" stroke="black" points="33,-39.5 33,-60.5 143,-60.5 143,-39.5 33,-39.5"/>
+<text text-anchor="start" x="36" y="-46.3" font-family="Times New Roman,serif" font-size="14.00">LiquidTransferJob</text>
+<polygon fill="none" stroke="black" points="33,-3.5 33,-39.5 143,-39.5 143,-3.5 33,-3.5"/>
+<text text-anchor="start" x="41.5" y="-25.3" font-family="Times New Roman,serif" font-size="14.00">source :Labware</text>
+<text text-anchor="start" x="41.5" y="-10.3" font-family="Times New Roman,serif" font-size="14.00">target :Labware</text>
+</g>
+<!-- LiquidTransferJob&#45;&gt;Job -->
+<g id="edge19" class="edge"><title>LiquidTransferJob&#45;&gt;Job</title>
+<path fill="none" stroke="black" d="M132.363,-65.0964C145.653,-74.5625 160.362,-85.0382 174.142,-94.8532"/>
+<polygon fill="none" stroke="black" points="172.406,-97.9137 182.582,-100.864 176.467,-92.212 172.406,-97.9137"/>
+</g>
+<!-- TipLiquidTransfer -->
+<g id="node15" class="node"><title>TipLiquidTransfer</title>
+<polygon fill="none" stroke="black" points="90,-473.5 90,-494.5 222,-494.5 222,-473.5 90,-473.5"/>
+<text text-anchor="start" x="104.5" y="-480.3" font-family="Times New Roman,serif" font-size="14.00">TipLiquidTransfer</text>
+<polygon fill="none" stroke="black" points="90,-407.5 90,-473.5 222,-473.5 222,-407.5 90,-407.5"/>
+<text text-anchor="start" x="93" y="-459.3" font-family="Times New Roman,serif" font-size="14.00">sourceCavityIndex :int</text>
+<text text-anchor="start" x="93" y="-444.3" font-family="Times New Roman,serif" font-size="14.00">volume :double</text>
+<text text-anchor="start" x="93" y="-429.3" font-family="Times New Roman,serif" font-size="14.00">targetCavityIndex :int</text>
+<text text-anchor="start" x="93" y="-414.3" font-family="Times New Roman,serif" font-size="14.00">status :String</text>
+</g>
+<!-- LiquidTransferJob&#45;&gt;TipLiquidTransfer -->
+<g id="edge5" class="edge"><title>LiquidTransferJob&#45;&gt;TipLiquidTransfer</title>
+<path fill="none" stroke="black" d="M93.1669,-65.185C105.068,-138.17 134.461,-318.417 148.414,-403.979"/>
+<text text-anchor="middle" x="132.914" y="-392.779" font-family="Times New Roman,serif" font-size="14.00">tips *</text>
+<text text-anchor="middle" x="83.6669" y="-68.985" font-family="Times New Roman,serif" font-size="14.00">job</text>
 </g>
 <!-- Microplate&#45;&gt;Labware -->
-<g id="edge18" class="edge"><title>Microplate&#45;&gt;Labware</title>
-<path fill="none" stroke="black" d="M534.766,-151.554C518.175,-193.423 481.656,-303.64 520,-383 530.568,-404.873 550.064,-422.719 569.344,-436.148"/>
-<polygon fill="none" stroke="black" points="567.596,-439.189 577.86,-441.818 571.476,-433.362 567.596,-439.189"/>
+<g id="edge20" class="edge"><title>Microplate&#45;&gt;Labware</title>
+<path fill="none" stroke="black" d="M256.75,-252.593C254.16,-295.223 250.477,-409.273 277,-499 279.722,-508.21 284.012,-517.581 288.61,-526.096"/>
+<polygon fill="none" stroke="black" points="285.665,-527.998 293.66,-534.95 291.746,-524.53 285.665,-527.998"/>
 </g>
 <!-- Microplate&#45;&gt;Sample -->
-<g id="edge11" class="edge"><title>Microplate&#45;&gt;Sample</title>
-<path fill="none" stroke="black" d="M560.115,-151.744C574.548,-165.483 595.149,-185.094 612.557,-201.665"/>
-<text text-anchor="middle" x="584.557" y="-190.465" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
-<text text-anchor="middle" x="546.615" y="-155.544" font-family="Times New Roman,serif" font-size="14.00">plate</text>
+<g id="edge12" class="edge"><title>Microplate&#45;&gt;Sample</title>
+<path fill="none" stroke="black" d="M274.548,-252.744C287.732,-266.483 306.55,-286.094 322.451,-302.665"/>
+<text text-anchor="middle" x="294.451" y="-291.465" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
+<text text-anchor="middle" x="261.048" y="-256.544" font-family="Times New Roman,serif" font-size="14.00">plate</text>
 </g>
 <!-- ProtocolStep&#45;&gt;ProtocolStep -->
-<g id="edge10" class="edge"><title>ProtocolStep&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M345.714,-115.355C356.042,-117.198 363.5,-123.246 363.5,-133.5 363.5,-143.754 356.042,-149.802 345.714,-151.645"/>
-<text text-anchor="middle" x="357.964" y="-155.445" font-family="Times New Roman,serif" font-size="14.00">previous</text>
-<text text-anchor="middle" x="357.714" y="-119.155" font-family="Times New Roman,serif" font-size="14.00">next</text>
+<g id="edge11" class="edge"><title>ProtocolStep&#45;&gt;ProtocolStep</title>
+<path fill="none" stroke="black" d="M690.714,-216.355C701.042,-218.198 708.5,-224.246 708.5,-234.5 708.5,-244.754 701.042,-250.802 690.714,-252.645"/>
+<text text-anchor="middle" x="715.214" y="-241.445" font-family="Times New Roman,serif" font-size="14.00">previous</text>
+<text text-anchor="middle" x="702.714" y="-205.155" font-family="Times New Roman,serif" font-size="14.00">next</text>
+</g>
+<!-- Sample&#45;&gt;TipLiquidTransfer -->
+<g id="edge13" class="edge"><title>Sample&#45;&gt;TipLiquidTransfer</title>
+<path fill="none" stroke="black" d="M298.386,-368.104C277.32,-380.294 252.888,-394.433 230.273,-407.52"/>
+<text text-anchor="middle" x="245.773" y="-396.32" font-family="Times New Roman,serif" font-size="14.00">tips *</text>
+<text text-anchor="middle" x="278.386" y="-371.904" font-family="Times New Roman,serif" font-size="14.00">sample</text>
 </g>
 <!-- TubeRunner -->
 <g id="node17" class="node"><title>TubeRunner</title>
-<polygon fill="none" stroke="black" points="619,-343 619,-364 755,-364 755,-343 619,-343"/>
-<text text-anchor="start" x="652" y="-349.8" font-family="Times New Roman,serif" font-size="14.00">TubeRunner</text>
-<polygon fill="none" stroke="black" points="619,-322 619,-343 755,-343 755,-322 619,-322"/>
-<text text-anchor="start" x="622" y="-328.8" font-family="Times New Roman,serif" font-size="14.00">barcodes :List&lt;String&gt;</text>
+<polygon fill="none" stroke="black" points="294,-451.5 294,-472.5 430,-472.5 430,-451.5 294,-451.5"/>
+<text text-anchor="start" x="327" y="-458.3" font-family="Times New Roman,serif" font-size="14.00">TubeRunner</text>
+<polygon fill="none" stroke="black" points="294,-430.5 294,-451.5 430,-451.5 430,-430.5 294,-430.5"/>
+<text text-anchor="start" x="297" y="-437.3" font-family="Times New Roman,serif" font-size="14.00">barcodes :List&lt;String&gt;</text>
 </g>
 <!-- Sample&#45;&gt;TubeRunner -->
-<g id="edge12" class="edge"><title>Sample&#45;&gt;TubeRunner</title>
-<path fill="none" stroke="black" d="M658.19,-267.165C664.422,-283.352 671.887,-302.743 677.656,-317.729"/>
-<text text-anchor="middle" x="665.156" y="-306.529" font-family="Times New Roman,serif" font-size="14.00">tube</text>
-<text text-anchor="middle" x="630.19" y="-270.965" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
+<g id="edge14" class="edge"><title>Sample&#45;&gt;TubeRunner</title>
+<path fill="none" stroke="black" d="M355.507,-368.255C356.953,-386.571 358.743,-409.244 360.077,-426.142"/>
+<text text-anchor="middle" x="347.577" y="-414.942" font-family="Times New Roman,serif" font-size="14.00">tube</text>
+<text text-anchor="middle" x="327.507" y="-372.055" font-family="Times New Roman,serif" font-size="14.00">samples *</text>
 </g>
 <!-- Trough -->
 <g id="node16" class="node"><title>Trough</title>
-<polygon fill="none" stroke="black" points="537,-335 537,-356 585,-356 585,-335 537,-335"/>
-<text text-anchor="start" x="540" y="-341.8" font-family="Times New Roman,serif" font-size="14.00">Trough</text>
-<polygon fill="none" stroke="black" points="537,-329 537,-335 585,-335 585,-329 537,-329"/>
+<polygon fill="none" stroke="black" points="8,-443.5 8,-464.5 56,-464.5 56,-443.5 8,-443.5"/>
+<text text-anchor="start" x="11" y="-450.3" font-family="Times New Roman,serif" font-size="14.00">Trough</text>
+<polygon fill="none" stroke="black" points="8,-437.5 8,-443.5 56,-443.5 56,-437.5 8,-437.5"/>
 </g>
 <!-- Trough&#45;&gt;Labware -->
-<g id="edge19" class="edge"><title>Trough&#45;&gt;Labware</title>
-<path fill="none" stroke="black" d="M569.893,-361.15C579.432,-379.548 594.818,-409.221 606.749,-432.23"/>
-<polygon fill="none" stroke="black" points="603.749,-434.047 611.459,-441.314 609.963,-430.825 603.749,-434.047"/>
+<g id="edge21" class="edge"><title>Trough&#45;&gt;Labware</title>
+<path fill="none" stroke="black" d="M43.3405,-469.907C50.6714,-479.833 61.0576,-491.71 73,-499 128.753,-533.034 203.124,-547.832 253.579,-554.222"/>
+<polygon fill="none" stroke="black" points="253.307,-557.714 263.652,-555.426 254.138,-550.764 253.307,-557.714"/>
 </g>
 <!-- TubeRunner&#45;&gt;Labware -->
-<g id="edge20" class="edge"><title>TubeRunner&#45;&gt;Labware</title>
-<path fill="none" stroke="black" d="M674.553,-368.004C665.038,-386.356 651.806,-411.874 641.267,-432.2"/>
-<polygon fill="none" stroke="black" points="638.133,-430.641 636.637,-441.13 644.347,-433.863 638.133,-430.641"/>
+<g id="edge22" class="edge"><title>TubeRunner&#45;&gt;Labware</title>
+<path fill="none" stroke="black" d="M350.2,-476.666C343.086,-491.236 333.927,-509.997 326.148,-525.929"/>
+<polygon fill="none" stroke="black" points="322.995,-524.407 321.753,-534.929 329.286,-527.479 322.995,-524.407"/>
 </g>
 <!-- Wash -->
 <g id="node18" class="node"><title>Wash</title>
-<polygon fill="none" stroke="black" points="296,-24.5 296,-45.5 335,-45.5 335,-24.5 296,-24.5"/>
-<text text-anchor="start" x="299" y="-31.3" font-family="Times New Roman,serif" font-size="14.00">Wash</text>
-<polygon fill="none" stroke="black" points="296,-18.5 296,-24.5 335,-24.5 335,-18.5 296,-18.5"/>
+<polygon fill="none" stroke="black" points="879,-125.5 879,-146.5 918,-146.5 918,-125.5 879,-125.5"/>
+<text text-anchor="start" x="882" y="-132.3" font-family="Times New Roman,serif" font-size="14.00">Wash</text>
+<polygon fill="none" stroke="black" points="879,-119.5 879,-125.5 918,-125.5 918,-119.5 879,-119.5"/>
 </g>
 <!-- Wash&#45;&gt;ProtocolStep -->
-<g id="edge21" class="edge"><title>Wash&#45;&gt;ProtocolStep</title>
-<path fill="none" stroke="black" d="M311.865,-50.7445C309.485,-63.8324 306.137,-82.249 303.22,-98.2901"/>
-<polygon fill="none" stroke="black" points="299.726,-97.9436 301.38,-108.408 306.613,-99.1959 299.726,-97.9436"/>
+<g id="edge23" class="edge"><title>Wash&#45;&gt;ProtocolStep</title>
+<path fill="none" stroke="black" d="M881.19,-151.814C875.485,-156.945 868.82,-162.201 862,-166 810.95,-194.439 746.417,-212.416 700.473,-222.601"/>
+<polygon fill="none" stroke="black" points="699.708,-219.186 690.673,-224.719 701.186,-226.028 699.708,-219.186"/>
 </g>
 <!-- WashJob -->
 <g id="node19" class="node"><title>WashJob</title>
-<polygon fill="none" stroke="black" points="907,-350 907,-371 1039,-371 1039,-350 907,-350"/>
-<text text-anchor="start" x="946.5" y="-356.8" font-family="Times New Roman,serif" font-size="14.00">WashJob</text>
-<polygon fill="none" stroke="black" points="907,-314 907,-350 1039,-350 1039,-314 907,-314"/>
-<text text-anchor="start" x="910" y="-335.8" font-family="Times New Roman,serif" font-size="14.00">cavities :List&lt;Integer&gt;</text>
-<text text-anchor="start" x="910" y="-320.8" font-family="Times New Roman,serif" font-size="14.00">microplate :Microplate</text>
+<polygon fill="none" stroke="black" points="329,-32.5 329,-53.5 459,-53.5 459,-32.5 329,-32.5"/>
+<text text-anchor="start" x="367.5" y="-39.3" font-family="Times New Roman,serif" font-size="14.00">WashJob</text>
+<polygon fill="none" stroke="black" points="329,-11.5 329,-32.5 459,-32.5 459,-11.5 329,-11.5"/>
+<text text-anchor="start" x="332" y="-18.3" font-family="Times New Roman,serif" font-size="14.00">cavities :List&lt;Integer&gt;</text>
 </g>
 <!-- WashJob&#45;&gt;Job -->
-<g id="edge22" class="edge"><title>WashJob&#45;&gt;Job</title>
-<path fill="none" stroke="black" d="M989.388,-375.606C997.129,-390.535 1006.47,-408.542 1014.74,-424.506"/>
-<polygon fill="none" stroke="black" points="1011.76,-426.364 1019.48,-433.631 1017.98,-423.142 1011.76,-426.364"/>
+<g id="edge24" class="edge"><title>WashJob&#45;&gt;Job</title>
+<path fill="none" stroke="black" d="M353.147,-57.7181C333.882,-69.1389 310.476,-83.0142 289.082,-95.6968"/>
+<polygon fill="none" stroke="black" points="287.187,-92.7513 280.37,-100.862 290.757,-98.7728 287.187,-92.7513"/>
 </g>
 </g>
 </svg>

@@ -1,6 +1,10 @@
 package fulib.labworkflow;
 import java.util.Objects;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+import java.util.Collection;
 
 public class Sample
 {
@@ -9,12 +13,14 @@ public class Sample
    public static final String PROPERTY_JOB_REQUEST = "jobRequest";
    public static final String PROPERTY_PLATE = "plate";
    public static final String PROPERTY_TUBE = "tube";
+   public static final String PROPERTY_TIPS = "tips";
    private String sampleID;
    private String state;
    private JobRequest jobRequest;
    protected PropertyChangeSupport listeners;
    private Microplate plate;
    private TubeRunner tube;
+   private List<TipLiquidTransfer> tips;
 
    public String getSampleID()
    {
@@ -133,6 +139,72 @@ public class Sample
       return this;
    }
 
+   public List<TipLiquidTransfer> getTips()
+   {
+      return this.tips != null ? Collections.unmodifiableList(this.tips) : Collections.emptyList();
+   }
+
+   public Sample withTips(TipLiquidTransfer value)
+   {
+      if (this.tips == null)
+      {
+         this.tips = new ArrayList<>();
+      }
+      if (!this.tips.contains(value))
+      {
+         this.tips.add(value);
+         value.setSample(this);
+         this.firePropertyChange(PROPERTY_TIPS, null, value);
+      }
+      return this;
+   }
+
+   public Sample withTips(TipLiquidTransfer... value)
+   {
+      for (final TipLiquidTransfer item : value)
+      {
+         this.withTips(item);
+      }
+      return this;
+   }
+
+   public Sample withTips(Collection<? extends TipLiquidTransfer> value)
+   {
+      for (final TipLiquidTransfer item : value)
+      {
+         this.withTips(item);
+      }
+      return this;
+   }
+
+   public Sample withoutTips(TipLiquidTransfer value)
+   {
+      if (this.tips != null && this.tips.remove(value))
+      {
+         value.setSample(null);
+         this.firePropertyChange(PROPERTY_TIPS, value, null);
+      }
+      return this;
+   }
+
+   public Sample withoutTips(TipLiquidTransfer... value)
+   {
+      for (final TipLiquidTransfer item : value)
+      {
+         this.withoutTips(item);
+      }
+      return this;
+   }
+
+   public Sample withoutTips(Collection<? extends TipLiquidTransfer> value)
+   {
+      for (final TipLiquidTransfer item : value)
+      {
+         this.withoutTips(item);
+      }
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -163,6 +235,7 @@ public class Sample
 
    public void removeYou()
    {
+      this.withoutTips(new ArrayList<>(this.getTips()));
       this.setTube(null);
       this.setPlate(null);
       this.setJobRequest(null);

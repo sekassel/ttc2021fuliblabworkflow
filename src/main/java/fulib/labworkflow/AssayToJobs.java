@@ -4,12 +4,14 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-public class AssayToJobs {
+public class AssayToJobs
+{
 
    private JobCollection jobCollection;
    private JobRequest jobRequest;
 
-   public JobCollection initial(JobRequest jobRequest) {
+   public JobCollection initial(JobRequest jobRequest)
+   {
       this.jobRequest = jobRequest;
       jobCollection = new JobCollection();
 
@@ -29,7 +31,8 @@ public class AssayToJobs {
 
    Map<Class, Consumer<ProtocolStep>> stepAssignRules = null;
 
-   private void assignJob(ProtocolStep protocolStep) {
+   private void assignJob(ProtocolStep protocolStep)
+   {
       initStepAssignRules();
       Consumer<ProtocolStep> rule = stepAssignRules.get(protocolStep.getClass());
       if (rule != null) {
@@ -40,7 +43,8 @@ public class AssayToJobs {
       }
    }
 
-   private void initStepAssignRules() {
+   private void initStepAssignRules()
+   {
       if (stepAssignRules == null) {
          stepAssignRules = new LinkedHashMap<>();
          stepAssignRules.put(DistributeSample.class, this::assignLiquidTransferJob4Samples);
@@ -50,12 +54,14 @@ public class AssayToJobs {
       }
    }
 
-   private void assignAddReagentJob(ProtocolStep protocolStep) {
+   private void assignAddReagentJob(ProtocolStep protocolStep)
+   {
       liquidTransferJob = null;
       jobRequest.getSamples().forEach(sample -> assignTipAddReagent((AddReagent) protocolStep, sample));
    }
 
-   private void assignTipAddReagent(AddReagent addReagent, Sample sample) {
+   private void assignTipAddReagent(AddReagent addReagent, Sample sample)
+   {
       if (liquidTransferJob == null || liquidTransferJob.getTips().size() == 8) {
          liquidTransferJob = new LiquidTransferJob();
          liquidTransferJob.setProtocolStepName(addReagent.getId())
@@ -75,7 +81,8 @@ public class AssayToJobs {
             .setVolume(addReagent.getVolume())
             .setTargetCavityIndex(sample.getPlate().getSamples().indexOf(sample))
             .setStatus("Planned")
-            .setJob(liquidTransferJob);
+            .setJob(liquidTransferJob)
+            .setSample(sample);
    }
 
    private void assignWashJob(ProtocolStep protocolStep)
@@ -99,13 +106,15 @@ public class AssayToJobs {
       }
    }
 
-   private void assignIncubateJob(ProtocolStep protocolStep) {
+   private void assignIncubateJob(ProtocolStep protocolStep)
+   {
       jobCollection.getLabware().stream()
             .filter(l -> l instanceof Microplate)
             .forEach(plate -> assignIncubateJob2Plate(protocolStep, plate));
    }
 
-   private void assignIncubateJob2Plate(ProtocolStep protocolStep, Labware plate) {
+   private void assignIncubateJob2Plate(ProtocolStep protocolStep, Labware plate)
+   {
       Incubate incubateStep = (Incubate) protocolStep;
       IncubateJob incubateJob = new IncubateJob();
       incubateJob.setProtocolStepName(protocolStep.getId())
@@ -120,13 +129,15 @@ public class AssayToJobs {
 
    private Job lastJob = null;
 
-   private void assignLiquidTransferJob4Samples(ProtocolStep protocolStep) {
+   private void assignLiquidTransferJob4Samples(ProtocolStep protocolStep)
+   {
       jobRequest.getSamples().forEach(sample -> assignTipLiquidTransfer(protocolStep, sample));
    }
 
    LiquidTransferJob liquidTransferJob = null;
 
-   private void assignTipLiquidTransfer(ProtocolStep protocolStep, Sample sample) {
+   private void assignTipLiquidTransfer(ProtocolStep protocolStep, Sample sample)
+   {
       DistributeSample distributeSample = (DistributeSample) protocolStep;
       if (liquidTransferJob == null || liquidTransferJob.getTips().size() == 8) {
          liquidTransferJob = new LiquidTransferJob();
@@ -143,31 +154,37 @@ public class AssayToJobs {
       tip.setSourceCavityIndex(sample.getTube().getSamples().indexOf(sample))
             .setVolume(distributeSample.getVolume())
             .setTargetCavityIndex(sample.getPlate().getSamples().indexOf(sample))
-            .setStatus("Planned").setJob(liquidTransferJob);
+            .setStatus("Planned")
+            .setJob(liquidTransferJob)
+            .setSample(sample);
    }
 
-   private void assignToTrough(Reagent reagent) {
+   private void assignToTrough(Reagent reagent)
+   {
       Trough trough = new Trough();
       trough.setName(reagent.getName())
             .setJobCollection(jobCollection);
    }
 
    private Microplate plate;
-   private int plateNumber = 0;
+   private int plateNumber = 1;
 
-   private void assignToPlate(Sample sample) {
+   private void assignToPlate(Sample sample)
+   {
       if (plate == null || plate.getSamples().size() == 96) {
          plate = new Microplate();
          plate.setName(String.format("Plate%02d", plateNumber))
                .setJobCollection(jobCollection);
+         plateNumber++;
       }
       plate.withSamples(sample);
    }
 
    TubeRunner tube;
-   int tubeNumber = 0;
+   int tubeNumber = 1;
 
-   private void assignToTube(Sample sample) {
+   private void assignToTube(Sample sample)
+   {
       if (tube == null || tube.getBarcodes().size() == 16) {
          tube = new TubeRunner();
          tube.setName(String.format("Tube%03d", tubeNumber))

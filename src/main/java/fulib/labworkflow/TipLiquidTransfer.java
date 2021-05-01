@@ -9,12 +9,14 @@ public class TipLiquidTransfer
    public static final String PROPERTY_TARGET_CAVITY_INDEX = "targetCavityIndex";
    public static final String PROPERTY_STATUS = "status";
    public static final String PROPERTY_JOB = "job";
+   public static final String PROPERTY_SAMPLE = "sample";
    private int sourceCavityIndex;
    private double volume;
    private int targetCavityIndex;
    private String status;
    private LiquidTransferJob job;
    protected PropertyChangeSupport listeners;
+   private Sample sample;
 
    public int getSourceCavityIndex()
    {
@@ -115,6 +117,33 @@ public class TipLiquidTransfer
       return this;
    }
 
+   public Sample getSample()
+   {
+      return this.sample;
+   }
+
+   public TipLiquidTransfer setSample(Sample value)
+   {
+      if (this.sample == value)
+      {
+         return this;
+      }
+
+      final Sample oldValue = this.sample;
+      if (this.sample != null)
+      {
+         this.sample = null;
+         oldValue.withoutTips(this);
+      }
+      this.sample = value;
+      if (value != null)
+      {
+         value.withTips(this);
+      }
+      this.firePropertyChange(PROPERTY_SAMPLE, oldValue, value);
+      return this;
+   }
+
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
    {
       if (this.listeners != null)
@@ -145,5 +174,6 @@ public class TipLiquidTransfer
    public void removeYou()
    {
       this.setJob(null);
+      this.setSample(null);
    }
 }
