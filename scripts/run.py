@@ -84,23 +84,40 @@ def set_working_directory(*path):
     dir = os.path.join(BASE_DIRECTORY, *path)
     os.chdir(dir)
 
+def _visualize(scenario, times, metric, unit, scale):
+    import pandas as pd
+    import numpy as np
+    from matplotlib.ticker import ScalarFormatter
+    import matplotlib.pyplot as plt
+    values = times[times.MetricName==metric]
+    values['Values'] = values.MetricValue * scale
+    sizes=np.unique(values.Model)
+    for phase in np.unique(values.PhaseName):
+        print("Printing diagram for scenario = " + scenario + ", phase = " + phase)
+        phasedata = values[values.PhaseName==phase]
+        results = pd.pivot_table(phasedata, values='Values', index=['Model'],columns=['Tool'])
+        plot = results.plot(logx=True,xticks=sizes)
+        plot.get_xaxis().set_major_formatter(ScalarFormatter())
+        plot.get_xaxis().set_tick_params(which='minor', size=0)
+        plot.get_xaxis().set_tick_params(which='minor', width=0)
+        label = metric
+        if unit is not None:
+            label = label + " [" + unit + "]"
+        plot.set_ylabel(label)
+        plt.savefig(scenario + "_" + phase + ".pdf")
 
-def visualize():
+def visualize(conf):
     """
     Visualizes the benchmark results
     """
     clean_dir("diagrams")
-    set_working_directory("reporting")
-    subprocess.call(["Rscript", "visualize.R", os.path.join(BASE_DIRECTORY, "config", "reporting.json")])
-
-
-def extract_results():
-    """
-    Extracts the benchmark results
-    """
-    clean_dir("results")
-    set_working_directory("reporting")
-    subprocess.call(["Rscript", "extract_results.R"])
+    set_working_directory("diagrams")
+    import pandas as pd
+    data = pd.read_csv(os.path.join(BASE_DIRECTORY, 'output', 'output.csv'), sep=';')
+    times = data[data.MetricName=='Time']
+    for scenario in conf.Scenarios:
+        timesForScenario = times[times.Scenario==scenario.Name]
+        _visualize(scenario.Name, timesForScenario, 'Time', 'ms', 0.000001)
 
 
 if __name__ == "__main__":
@@ -116,9 +133,6 @@ if __name__ == "__main__":
                         action="store_true")
     parser.add_argument("-v", "--visualize",
                         help="create visualizations",
-                        action="store_true")
-    parser.add_argument("-e", "--extract",
-                        help="extract results",
                         action="store_true")
     parser.add_argument("-t", "--test",
                         help="run test",
@@ -137,9 +151,7 @@ if __name__ == "__main__":
     if args.test:
         build(config, False)
     if args.visualize:
-        visualize()
-    if args.extract:
-        extract_results()
+        visualize(config)
 
     # if there are no args, execute a full sequence
     # with the test and the visualization/reporting

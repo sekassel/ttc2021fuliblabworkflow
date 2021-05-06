@@ -1,5 +1,5 @@
 {
-  "Tools": ["NMF"],
+  "Tools": ["Reference"],
   "Scenarios": [
   {
 	"Name": "scale_samples",
@@ -11,10 +11,6 @@
 	  "16",
 	  "32"
 	]
-  },
-  {
-    "Name": "test",
-	"Models": ["minimal"]
   },
   {
     "Name": "scale_assay",
