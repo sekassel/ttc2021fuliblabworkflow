@@ -71,9 +71,20 @@ namespace TTC2021.LabWorkflows.Commandline
             var result = _solution.Initial();
             _stopwatch.Stop();
             Report( BenchmarkPhase.Initial, null );
-            using(var target = File.Create( Path.Combine( ModelPath, "results", $"initialResult-{Tool}.xmi" ) ))
+            MakeSureModelPathExists();
+            var path = Path.Combine( ModelPath, "results", $"initialResult-{Tool}.xmi" );
+            using(var target = File.Create( path ))
             {
+                result.ModelUri = new Uri( path );
                 repository.Serializer.Serialize( result, target );
+            }
+        }
+
+        private void MakeSureModelPathExists()
+        {
+            if (!Directory.Exists(Path.Combine(ModelPath, "results")))
+            {
+                Directory.CreateDirectory( Path.Combine( ModelPath, "results" ) );
             }
         }
 

@@ -16,7 +16,7 @@ namespace TTC2021.LabWorkflows
     {
         public static void Main(string[] args)
         {
-            Parser.Default.ParseArguments( args, typeof( GenerateModelVerb ), typeof( CheckModelVerb ), typeof( SolveReferenceVerb ) )
+            Parser.Default.ParseArguments( args, typeof( GenerateModelVerb ), typeof( CheckModelVerb ), typeof( SolveReferenceVerb ), typeof(SolveIncrementalVerb) )
                 .WithNotParsed( _ => Environment.ExitCode = 1 )
                 .WithParsed( ( VerbBase verb ) => verb.Execute() );
         }
