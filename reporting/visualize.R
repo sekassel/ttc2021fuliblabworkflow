@@ -5,18 +5,23 @@ source("functions.R")
 source("plot.R")
 source("constants.R")
 
+options(error = traceback)
+
 args <- commandArgs(trailingOnly = TRUE)
-configPath <- args[1]
+configPath <- "../config/reporting.json"
 
 results <-read.csv2(resultsPath, header=TRUE, row.names = NULL)
 
 config <- fromJSON(configPath)
 
+
+
+
 if (validPhase(results, config$Summarize_Functions$Phases) == FALSE){
   print("Non existing phasename provided!")
   quit()
 }
-  
+
 index <- 0
 settings <- PlotSettings()
 uniqueModels <- unique(results$Model)
@@ -25,6 +30,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
   phases <- config$Summarize_Functions[row,]$Phases
   name <- config$Summarize_Functions[row,]$Name
   index <- index + 1
+
   for(model in uniqueModels){
     metric <- "Time"
     subData1 <- subset(results, Model==model & MetricName == metric)
@@ -38,7 +44,9 @@ for(row in 1:nrow(config$Summarize_Functions)){
         
         if (config$Dimensions$X_Dimensions$Model){
           title <- paste(tool, ", ", model, ", Function: ", concatPhases(phases), sep='')
-         
+
+          print("Got it up to line 48 ")
+
           settings <- setTitle(settings, title)
           settings <- setDimensions(settings, "Model", "MetricValue")
           settings <- setLabels(settings, "Model", "Time (ms)")
@@ -49,22 +57,30 @@ for(row in 1:nrow(config$Summarize_Functions)){
           }
           write.csv(subData2, file = paste(rootPath, model, "-", tool, "-GroupBy-Scenario-", metric, "-", name, ".csv", sep=''))
         }
-        
+
         if (config$Dimensions$X_Dimensions$Iteration){
           uniqueModels <-unique(subData2$Model)
           for(changeSet in uniqueModels){
             subData3 <- subset(subData2, Model==changeSet)
             title <- paste(tool, ", Model: ", changeSet, ", Function: ", concatPhases(phases), sep='')
-           
+            print("Got it up to line 66 ")
+            print(changeSet)
+            print(tool)
             settings <- setTitle(settings, title)
             settings <- setDimensions(settings, "Iteration", "MetricValue")
             settings <- setLabels(settings, "Iterations", "Time (ms)")
             settings <- setAxis(settings, "Continuous", yAxis)
             for (extension in config$Extension){
               fileName <- paste(rootPath, model, "-", tool, "-changeSet-", changeSet, "-GroupBy-Scenario-", metric, "-", name, ".", extension, sep='')
-              savePlot(subData3, settings, phases, fileName)
+              print("Got it up to line 75 ")
+              print(fileName)
+              # savePlot(subData2, settings, phases, fileName)
+              # savePlot(subData3, settings, phases, fileName)
             }
             write.csv(subData3, file = paste(rootPath, model, "-", tool, "-Model-", changeSet, "-GroupBy-Scenario-", metric, "-", name, ".csv", sep=''))
+            print("Got it up to line 78 ")
+            print(changeSet)
+            print(tool)
           }
         } 
       }
@@ -105,7 +121,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
           for (extension in config$Extension){
             fileName <- paste(rootPath, view, "-Model-", size, "-GroupBy-Tool-", metric, "-", name, ".", extension, sep='')
             settings <- setTitle(settings, title)
-            savePlot(subData3, settings, phases, fileName)
+            # savePlot(subData3, settings, phases, fileName)
           }
           write.csv(subData3, file = paste(rootPath, view, "-Model-", size, "-GroupBy-Tool-", metric, "-", name, ".csv", sep=''))
         }

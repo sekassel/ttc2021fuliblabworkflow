@@ -25,3 +25,5 @@ solutions/NMF.sln
 solutions/.vs/
 changes/1024/
 build/
+
+*.class

@@ -14,9 +14,11 @@
       "Name": "Updates",
       "Phases": [
         "Update"
-      ]
+      ],
+      "Metric": "time",
+      "Y_Label": "Time (ms)",
+      "Y_Axis_Scale": -6
     }
   ],
   "Extension": ["png", "pdf"]
 }
-

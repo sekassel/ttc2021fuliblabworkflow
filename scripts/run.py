@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 @author: Zsolt Kovari, Georg Hinkel
 
@@ -65,12 +65,16 @@ def benchmark(conf):
                     os.environ['ModelPath'] = full_change_path
                     print("Running benchmark: tool = " + tool + ", scenario = " + scenario.Name + ", model = " + change_set)
                     try:
+                        cwd = os.getcwd()
                         output = subprocess.check_output(config.get('run', 'default'), shell=True)
                         with open(result_file, "ab") as file:
                             file.write(output)
+                            print("calling dotnet in working directory " + cwd)
                             output = subprocess.check_output("dotnet ../Reference/bin/netcoreapp3.1/NMFSolution.dll check")
+                            print ("after dotnet call\n")
                             file.write(output)
                     except CalledProcessError as e:
+                        print ("after dotnet call\n")
                         print("Program exited with error" + repr(e))
 
 def clean_dir(*path):
