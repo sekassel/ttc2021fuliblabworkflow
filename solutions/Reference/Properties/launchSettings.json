@@ -6,8 +6,8 @@
       "environmentVariables": {
         "RunIndex": "Debug",
         "Sequences": "9",
-        "ModelPath": "C:\\Projects\\ttc2021\\models\\scale_samples\\1",
-        "Model": "1",
+        "ModelPath": "C:\\Projects\\ttc2021\\models\\new_samples\\128",
+        "Model": "128",
         "Tool": "Incremental"
       }
     }

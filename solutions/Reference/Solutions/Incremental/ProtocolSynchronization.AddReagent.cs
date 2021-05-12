@@ -18,10 +18,9 @@ namespace TTC2021.LabWorkflows.Solutions
 
                 SynchronizeManyLeftToRightOnly(
                     SyncRule<AddReagentLiquidTransferToLiquidTransfer>(),
-                    ( step, context ) => from plate in GetPlates( context )
-                                         from column in plate.Columns
-                                         where column.AnyValidSample.Value
-                                         select new AddReagentLiquidTransfer( column, plate, step ),
+                    ( step, context ) => GetPlates( context )
+                                         .SelectMany(p => p.Columns, (plate, column) => new AddReagentLiquidTransfer(column, plate, step))
+                                         .Where(transfer => transfer.Column.AnyValidSample.Value),
                     ( jobsOfStep, _ ) => jobsOfStep.Jobs.OfType<IJob, LiquidTransferJob>() );
             }
         }
@@ -34,9 +33,9 @@ namespace TTC2021.LabWorkflows.Solutions
                 SynchronizeLeftToRightOnly( SyncRule<ProcessPlateToMicroplate>(), step => step.Plate, liquidTransfer => liquidTransfer.Target as Microplate );
 
                 SynchronizeManyLeftToRightOnly( SyncRule<AddReagentTipToTipTransfer>(),
-                    step => from s in step.Column.Samples
-                            where s.Sample.State != SampleState.Error
-                            select new AddReagentTip( step, s ),
+                    step => step.Column.Samples
+                            .Where( s => s.Sample.State != SampleState.Error )
+                            .Select( s => new AddReagentTip( step, s ) ),
                     liquidTransfer => new TipCollection( liquidTransfer.Tips ) );
 
                 SynchronizeManyLeftToRightOnly(

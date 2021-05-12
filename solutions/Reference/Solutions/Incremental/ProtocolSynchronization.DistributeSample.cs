@@ -1,5 +1,6 @@
 ﻿using NMF.Expressions.Linq;
 using NMF.Synchronizations;
+using NMF.Transformations.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,15 @@ namespace TTC2021.LabWorkflows.Solutions
 
                 SynchronizeManyLeftToRightOnly(
                     SyncRule<DistributeSampleLiquidTransferToLiquidTransfer>(),
-                    ( step, context ) => from plate in GetPlates( context )
-                                         from column in plate.Columns
-                                         where column.AnyValidSample.Value
-                                         select new DistributeSampleLiquidTransfer( plate, column, GetTubes( context ).FirstOrDefault( t => t.Samples.Any( s => column.Samples.Any( s2 => s.Sample == s2.Sample ) ) ), step ),
+                    ( step, context ) => GetPlates( context )
+                                         .SelectMany( plate => plate.Columns, ( plate, column ) => new DistributeSampleLiquidTransfer( plate, column, GetSourceTube( context, column ), step ) )
+                                         .Where( transfer => transfer.Column.AnyValidSample.Value ),
                     ( jobsOfStep, _ ) => jobsOfStep.Jobs.OfType<IJob, LiquidTransferJob>() );
+            }
+
+            private static Tubes GetSourceTube( ITransformationContext context, ProcessColumn column )
+            {
+                return GetTubes( context ).AsEnumerable().FirstOrDefault( t => t.Samples.AsEnumerable().Any( s => column.Samples.AsEnumerable().Any( s2 => s.Sample == s2.Sample ) ) );
             }
         }
 
@@ -35,9 +40,9 @@ namespace TTC2021.LabWorkflows.Solutions
                 SynchronizeLeftToRightOnly( SyncRule<ProcessPlateToMicroplate>(), step => step.Plate, liquidTransfer => liquidTransfer.Target as Microplate );
 
                 SynchronizeManyLeftToRightOnly( SyncRule<DispenseWellsToTipTransfer>(),
-                    step => from s in step.Column.Samples
-                            where s.Sample.State != SampleState.Error
-                            select new DistributeSampleTip( step, s ),
+                    step => step.Column.Samples
+                            .Where(s => s.Sample.State != SampleState.Error)
+                            .Select(s => new DistributeSampleTip( step, s )),
                     liquidTransfer => new TipCollection( liquidTransfer.Tips ) );
 
                 SynchronizeManyLeftToRightOnly(
