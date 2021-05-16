@@ -1,0 +1,33 @@
+{
+  "Tools": ["NMF"],
+  "Scenarios": [
+  {
+	"Name": "scale_samples",
+	"Models": [
+	  "1",
+	  "2",
+	  "4",
+	  "8",
+	  "16",
+	  "32"
+	]
+  },
+  {
+    "Name": "test",
+	"Models": ["minimal"]
+  },
+  {
+    "Name": "scale_assay",
+	"Models": [
+	  "1",
+	  "2",
+	  "4",
+	  "8",
+	  "16",
+	  "32"
+	]
+  }],
+  "Sequences": 20,
+  "Runs": 5,
+  "Timeout": 6000
+}

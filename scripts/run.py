@@ -7,6 +7,7 @@ import argparse
 import os
 import shutil
 import subprocess
+import logging
 import sys
 try:
     import ConfigParser
@@ -163,5 +164,4 @@ if __name__ == "__main__":
     if no_args:
         build(config, False)
         benchmark(config)
-        visualize()
-        extract_results()
+        visualize(config)
