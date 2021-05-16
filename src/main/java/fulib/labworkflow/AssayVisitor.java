@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 public class AssayVisitor
 {
-   Map<String, Function<Element, Object>> methodMap = null;
    private JobRequest jobRequest;
    private Assay assay;
 
@@ -21,6 +20,8 @@ public class AssayVisitor
    {
       return jobRequest;
    }
+
+   Map<String, Function<Element, Object>> methodMap = null;
 
    public void visit(Element root)
    {
