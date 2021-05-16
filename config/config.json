@@ -1,15 +1,12 @@
 {
-  "Tools": ["NMF"],
+  "Tools": ["Reference"],
   "Scenarios": [
   {
 	"Name": "scale_samples",
 	"Models": [
 	  "1",
 	  "2",
-	  "4",
-	  "8",
-	  "16",
-	  "32"
+      "4"
 	]
   },
   {
@@ -20,14 +17,10 @@
     "Name": "scale_assay",
 	"Models": [
 	  "1",
-	  "2",
-	  "4",
-	  "8",
-	  "16",
-	  "32"
+	  "2"
 	]
   }],
   "Sequences": 20,
-  "Runs": 5,
+  "Runs": 1,
   "Timeout": 6000
 }

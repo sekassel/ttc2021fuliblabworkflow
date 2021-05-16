@@ -13,6 +13,10 @@ public class AssayBuilder
 
    private JobRequest jobRequest;
 
+   public JobRequest loadAssay(String scenario, String model) {
+      return loadAssay(String.format("models/%s/%s/initial.xmi", scenario, model));
+   }
+
    public JobRequest loadAssay(String filename)
    {
       try {

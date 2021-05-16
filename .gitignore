@@ -15,7 +15,6 @@
 **/Thumbs.db
 **/.Rhistory
 **/.RData
-output/output*.csv
 .pydevproject
 deps/
 diagrams/
@@ -27,3 +26,6 @@ changes/1024/
 build/
 
 *.class
+
+.gradle/
+
