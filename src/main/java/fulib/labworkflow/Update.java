@@ -64,12 +64,15 @@ public class Update
       String plateName = split[1];
       String states = split[2];
 
+      Microplate plate = getPlate(plateName);
+      if (plate == null) {
+         return;
+      }
+
       if (states.length() == 1) {
-         Microplate plate = getPlate(plateName);
          plate.getSamples().forEach(sample -> updateSampleAndJob(sample, plate, states, stepName));
       }
       else {
-         Microplate plate = getPlate(plateName);
          plate.getSamples().forEach(sample -> updateSampleAndTip(sample, plate, states, stepName));
       }
 
@@ -110,9 +113,14 @@ public class Update
 
    private Microplate getPlate(String plateName)
    {
-      Microplate plate = (Microplate) jobCollection.getLabware().stream()
+      Optional<Labware> plate = jobCollection.getLabware().stream()
             .filter(labware -> labware.getName().equals(plateName))
-            .findFirst().get();
-      return plate;
+            .findFirst();
+      if (plate.isPresent()) {
+         return (Microplate) plate.get();
+      }
+      else {
+         return null;
+      }
    }
 }

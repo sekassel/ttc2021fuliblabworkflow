@@ -19,6 +19,7 @@ public class FulibSolution
    private String phase;
    private JobCollection jobCollection;
    private String iteration;
+   private Runtime runtime;
 
    public static void main(String[] args)
    {
@@ -33,8 +34,8 @@ public class FulibSolution
       runExample("scale_samples", "1");
       runExample("scale_samples", "2");
       runExample("scale_samples", "4");
-      // runExample("scale_assay", "1");
-      // runExample("scale_assay", "2");
+      runExample("scale_assay", "1");
+      runExample("scale_assay", "2");
 
    }
 
@@ -43,6 +44,8 @@ public class FulibSolution
       this.scenario = scenario;
       this.model = model;
 
+      this.root = null;
+      this.jobCollection = null;
       this.iteration = "0";
       this.phase = "Load";
       AssayBuilder assayBuilder = new AssayBuilder();
@@ -77,14 +80,24 @@ public class FulibSolution
 
    private void measure(Runnable job)
    {
+      if (runtime == null) {
+         runtime = Runtime.getRuntime();
+      }
+
       long startTime = System.nanoTime();
       job.run();
       long endTime = System.nanoTime();
       long usedTime = endTime - startTime;
-      String result = String.format("Fulib;%s;%s;0;%s;%s;Time;%d\n", scenario, model, iteration, phase, usedTime);
 
       try {
+         String result = String.format("Fulib;%s;%s;0;%s;%s;Time;%d\n", scenario, model, iteration, phase, usedTime);
          Files.writeString(fulibOutputPath, result, StandardOpenOption.APPEND);
+
+         System.gc();
+         System.runFinalization();
+         long usedBytes = runtime.totalMemory();
+         String memory = String.format("Fulib;%s;%s;0;%s;%s;Memory;%d\n", scenario, model, iteration, phase, usedBytes);
+         Files.writeString(fulibOutputPath, memory, StandardOpenOption.APPEND);
       }
       catch (IOException e) {
          Logger.getGlobal().log(Level.SEVERE, "could not write to " + fulibOutputPath.getFileName(), e);
