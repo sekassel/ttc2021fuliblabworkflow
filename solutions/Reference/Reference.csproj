@@ -27,10 +27,10 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="NMF-Basics" Version="2.0.174" />
-    <PackageReference Include="NMF-Expressions-Chunk" Version="2.0.174" />
-    <PackageReference Include="NMF-Expressions-Utilities" Version="2.0.174" />
-    <PackageReference Include="NMF-Synchronizations" Version="2.0.174" />
+    <PackageReference Include="NMF-Basics" Version="2.0.176" />
+    <PackageReference Include="NMF-Expressions-Chunk" Version="2.0.176" />
+    <PackageReference Include="NMF-Expressions-Utilities" Version="2.0.176" />
+    <PackageReference Include="NMF-Synchronizations" Version="2.0.176" />
   </ItemGroup>
 
 </Project>
