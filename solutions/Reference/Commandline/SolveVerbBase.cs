@@ -104,7 +104,6 @@ namespace TTC2021.LabWorkflows.Commandline
 
         private void Report( BenchmarkPhase phase, int? iteration = null )
         {
-            GC.Collect();
             Console.WriteLine( $"{Tool};{Scenario};{Model};{RunIndex};{iteration ?? 0};{phase};Time;{_stopwatch.Elapsed.Ticks * 100}" );
             Console.WriteLine( $"{Tool};{Scenario};{Model};{RunIndex};{iteration ?? 0};{phase};Memory;{Environment.WorkingSet}" );
         }

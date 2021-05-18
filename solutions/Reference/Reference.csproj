@@ -30,7 +30,6 @@
     <PackageReference Include="NMF-Basics" Version="2.0.174" />
     <PackageReference Include="NMF-Expressions-Chunk" Version="2.0.174" />
     <PackageReference Include="NMF-Expressions-Utilities" Version="2.0.174" />
-    <PackageReference Include="NMF-Layering" Version="2.0.174" />
     <PackageReference Include="NMF-Synchronizations" Version="2.0.174" />
   </ItemGroup>
 

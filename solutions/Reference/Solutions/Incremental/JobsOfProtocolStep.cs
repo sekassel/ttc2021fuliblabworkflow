@@ -55,7 +55,8 @@ namespace TTC2021.LabWorkflows.Solutions
             {
                 var samples = ProtocolSynchronization.GetAffectedSamples( _context, item );
                 _hooks.Add( item, CollectionBinding.Create(
-                    _nextJobs.Jobs.Where( j => ProtocolSynchronization.GetAffectedSamples( _context, j ).Intersect( samples ).Any() ),
+                    _nextJobs.Jobs.Where( j => ProtocolSynchronization.GetAffectedSamples( _context, j ).Intersect( samples ).Any(),
+                                          j => ProtocolSynchronization.GetAffectedSamples( _context, j ).Intersect( samples ).Any() ),
                     item.Next ) );
             }
         }
