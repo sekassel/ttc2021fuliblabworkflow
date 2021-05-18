@@ -2,13 +2,13 @@
   "profiles": {
     "NMF": {
       "commandName": "Project",
-      "commandLineArgs": "reference",
+      "commandLineArgs": "incremental",
       "environmentVariables": {
         "RunIndex": "Debug",
-        "Sequences": "20",
-        "ModelPath": "C:\\Projects\\ttc2021\\models\\2",
-        "Model": "2",
-        "Tool": "Reference"
+        "Sequences": "9",
+        "ModelPath": "C:\\Projects\\ttc2021\\models\\new_samples\\128",
+        "Model": "128",
+        "Tool": "Incremental"
       }
     }
   }

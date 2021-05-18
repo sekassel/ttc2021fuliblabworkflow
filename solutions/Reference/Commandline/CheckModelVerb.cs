@@ -29,7 +29,8 @@ namespace TTC2021.LabWorkflows.Commandline
             "BindConjugate",
             "WashConjugate",
             "AddSubstrate",
-            "WaitForColorReaction"
+            "WaitForColorReaction",
+            "Transfer"
         };
 
         protected override void ExecuteCore()
@@ -80,12 +81,29 @@ namespace TTC2021.LabWorkflows.Commandline
                          "cavities used multiple times",
                          description );
 
-            Report( phase, iteration, resultModel.Descendants().Count() );
+            var failedPlatesIncubate = from incubate in jobCollection.Jobs.OfType<IIncubateJob>()
+                                       where incubate.State == JobStatus.Failed
+                                       select incubate.Microplate;
+
+            var failedPlatesWash = from wash in jobCollection.Jobs.OfType<IWashJob>()
+                                   where wash.State == JobStatus.Failed
+                                   select wash.Microplate;
+
+            var failedPlates = new HashSet<ILabware>( failedPlatesIncubate.Concat( failedPlatesWash ) );
+
+            var liquidTransfersPerWell = from liquidTransfer in jobCollection.Jobs.OfType<ILiquidTransferJob>()
+                                         from tipCavity in liquidTransfer.Tips
+                                         group tipCavity by (tipCavity.TargetCavityIndex, liquidTransfer.Target) into wellGroup
+                                         where wellGroup.All( tipTransfer => tipTransfer.Status != JobStatus.Failed ) && !failedPlates.Contains(wellGroup.Key.Target)
+                                         select wellGroup;
+
+            Report( phase, iteration, resultModel.Descendants().Count(), liquidTransfersPerWell.Count() );
         }
 
-        private void Report( BenchmarkPhase phase, int? iteration, int elements )
+        private void Report( BenchmarkPhase phase, int? iteration, int elements, int successfulWells )
         {
             Console.WriteLine( $"{Tool};{Scenario};{Model};{RunIndex};{iteration ?? 0};{phase};Elements;{elements}" );
+            Console.WriteLine( $"{Tool};{Scenario};{Model};{RunIndex};{iteration ?? 0};{phase};ActiveSamples;{successfulWells}" );
         }
 
         private void AssertEmpty( IEnumerable<string> forbiddenQuery, string description, string modelDescription )

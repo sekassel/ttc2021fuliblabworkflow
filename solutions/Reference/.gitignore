@@ -1,2 +1,5 @@
 bin/Debug/
 *.user
+*.pdb
+*.xml
+.vs/
