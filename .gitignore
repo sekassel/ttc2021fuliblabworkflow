@@ -15,6 +15,7 @@
 **/Thumbs.db
 **/.Rhistory
 **/.RData
+**/.vscode/
 output/output*.csv
 .pydevproject
 deps/
