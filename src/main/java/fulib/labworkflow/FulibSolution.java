@@ -31,16 +31,17 @@ public class FulibSolution
       prepareOutput();
 
       runExample("test", "minimal");
-      runExample("scale_samples", "1");
-      runExample("scale_samples", "2");
-      runExample("scale_samples", "4");
-      runExample("scale_assay", "1");
-      runExample("scale_assay", "2");
-
+      for (int i = 0; i <= 10; i++) {
+         runExample("scale_samples", "" + (long) Math.pow(2, i));
+      }
+      for (int i = 0; i <= 5; i++) {
+         runExample("scale_assay", "" + (long) Math.pow(2, i));
+      }
    }
 
    private void runExample(String scenario, String model)
    {
+      System.out.println(String.format("Running scenario %s model %s", scenario, model));
       this.scenario = scenario;
       this.model = model;
 
