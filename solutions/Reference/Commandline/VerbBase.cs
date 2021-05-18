@@ -10,6 +10,9 @@ namespace TTC2021.LabWorkflows.Commandline
 
         public void Execute()
         {
+#if DEBUG
+            ExecuteCore();
+#else
             try
             {
                 ExecuteCore();
@@ -19,6 +22,7 @@ namespace TTC2021.LabWorkflows.Commandline
                 Console.Error.WriteLine( exception );
                 Environment.ExitCode = 1;
             }
+#endif
         }
     }
 }

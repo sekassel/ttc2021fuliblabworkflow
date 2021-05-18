@@ -15,6 +15,7 @@
 **/Thumbs.db
 **/.Rhistory
 **/.RData
+**/.vscode/
 .pydevproject
 deps/
 diagrams/

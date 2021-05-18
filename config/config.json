@@ -1,5 +1,5 @@
 {
-  "Tools": ["Reference"],
+  "Tools": ["Reference", "NMF"],
   "Scenarios": [
   {
 	"Name": "scale_samples",
@@ -30,6 +30,17 @@
       "8",
       "16",
       "32"
+	]
+  },
+  {
+    "Name": "new_samples",
+	"Models": [
+	  "1",
+	  "2",
+	  "4",
+	  "8",
+	  "16",
+	  "32"
 	]
   }],
   "Sequences": 20,
