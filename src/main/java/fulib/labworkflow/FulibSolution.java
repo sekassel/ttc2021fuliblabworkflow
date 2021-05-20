@@ -108,7 +108,7 @@ public class FulibSolution
    private void prepareOutput()
    {
       try {
-         fulibOutputPath = Files.copy(Paths.get("output/header.csv"), Paths.get("output/fulibOutput.csv"), StandardCopyOption.REPLACE_EXISTING);
+         fulibOutputPath = Files.copy(Paths.get("output/header.csv"), Paths.get("output/fulibTablesOutput.csv"), StandardCopyOption.REPLACE_EXISTING);
       }
       catch (IOException e) {
          e.printStackTrace();
