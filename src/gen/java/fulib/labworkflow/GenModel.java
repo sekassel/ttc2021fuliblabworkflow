@@ -178,5 +178,7 @@ public class GenModel implements ClassModelDecorator
    public void decorate(ClassModelManager mm)
    {
       mm.haveNestedClasses(GenModel.class);
+
+      Fulib.tablesGenerator().generate(mm.getClassModel());
    }
 }

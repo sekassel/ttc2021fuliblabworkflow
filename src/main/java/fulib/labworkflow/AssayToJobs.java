@@ -1,5 +1,8 @@
 package fulib.labworkflow;
 
+import fulib.labworkflow.tables.JobCollectionTable;
+import fulib.labworkflow.tables.LabwareTable;
+
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
@@ -108,7 +111,8 @@ public class AssayToJobs
 
    private void assignIncubateJob(ProtocolStep protocolStep)
    {
-      jobCollection.getLabware().stream()
+      new JobCollectionTable(jobCollection)
+            .expandLabware("labware")
             .filter(l -> l instanceof Microplate)
             .forEach(plate -> assignIncubateJob2Plate(protocolStep, plate));
    }
