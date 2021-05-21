@@ -25,6 +25,7 @@ public class AssayBuilder
          Document document = builder.parse(new File(filename));
 
          Element root = document.getDocumentElement();
+
          root.normalize();
 
          AssayVisitor visitor = new AssayVisitor();

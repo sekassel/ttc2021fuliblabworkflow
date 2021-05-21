@@ -56,6 +56,9 @@ public class FulibSolution
       AssayToJobs assayToJobs = new AssayToJobs();
       measure(() -> jobCollection = assayToJobs.initial(root));
 
+      JobCollectionWriter jobCollectionWriter = new JobCollectionWriter();
+      jobCollectionWriter.write(jobCollection, scenario, model, phase);
+
       try {
          Path dir = Paths.get(String.format("models/%s/%s", scenario, model));
          List<Path> list = Files.list(dir).collect(Collectors.toList());

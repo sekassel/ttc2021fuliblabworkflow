@@ -191,7 +191,7 @@ public class AssayToJobs
    {
       if (tube == null || tube.getBarcodes().size() == 16) {
          tube = new TubeRunner();
-         tube.setName(String.format("Tube%03d", tubeNumber))
+         tube.setName(String.format("Tube%02d", tubeNumber))
                .setJobCollection(jobCollection);
          tubeNumber++;
       }
