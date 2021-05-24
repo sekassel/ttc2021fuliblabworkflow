@@ -318,6 +318,13 @@ public class TipLiquidTransferTable
       return this;
    }
 
+   public TipLiquidTransfer get(int i) {
+      if (this.table.size() >= 1) {
+         return (TipLiquidTransfer) this.table.get(0).get(this.getColumn());
+      }
+      return null;
+   }
+
    public Set<TipLiquidTransfer> toSet()
    {
       int column = this.getColumn();

@@ -1,6 +1,8 @@
 package fulib.labworkflow.tables;
 import fulib.labworkflow.JobCollection;
 import fulib.labworkflow.Labware;
+import fulib.labworkflow.Microplate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -202,12 +204,23 @@ public class LabwareTable
       this.columnMap.put(columnName, newColumnNumber);
    }
 
-   public LabwareTable filter(Predicate<? super Labware> predicate)
+   public MicroplateTable filterMicroplate()
+   {
+      this.filter(l -> l instanceof Microplate);
+      MicroplateTable result = new MicroplateTable();
+      result.setColumnMap(this.columnMap);
+      result.setTable(this.table);
+      result.setColumnName(columnName);
+      return result;
+   }
+
+   public LabwareTable filter(Predicate<? super Labware> predicate) // no fulib
    {
       int column = this.getColumn();
       this.table.removeIf(row -> {
          Labware start = (Labware) row.get(column);
-         return !predicate.test(start);
+         boolean b = !predicate.test(start);
+         return b;
       });
       return this;
    }
@@ -278,4 +291,5 @@ public class LabwareTable
          this.table.add(row);
       }
    }
+
 }

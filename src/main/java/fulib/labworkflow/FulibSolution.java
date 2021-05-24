@@ -57,7 +57,7 @@ public class FulibSolution
       measure(() -> jobCollection = assayToJobs.initial(root));
 
       JobCollectionWriter jobCollectionWriter = new JobCollectionWriter();
-      jobCollectionWriter.write(jobCollection, scenario, model, phase);
+      jobCollectionWriter.write(jobCollection, scenario, model, phase.toLowerCase());
 
       try {
          Path dir = Paths.get(String.format("models/%s/%s", scenario, model));
@@ -72,6 +72,7 @@ public class FulibSolution
                phase = "Update";
                iteration = "" + i;
                measure(() -> update.update(jobCollection, content));
+               jobCollectionWriter.write(jobCollection, scenario, model, String.format("change%02d", i));
                i++;
             }
          }

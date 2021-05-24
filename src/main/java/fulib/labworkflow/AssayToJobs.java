@@ -18,12 +18,6 @@ public class AssayToJobs
       this.jobRequest = jobRequest;
       jobCollection = new JobCollection();
 
-      int i = 0;
-      int tubeNumber = 0;
-      int plateNumber = 0;
-      TubeRunner tube = null;
-      Microplate plate = null;
-
       jobRequest.getSamples().forEach(this::assignToTube);
       jobRequest.getSamples().forEach(this::assignToPlate);
       jobRequest.getAssay().getReagents().forEach((this::assignToTrough));
@@ -113,7 +107,7 @@ public class AssayToJobs
    {
       new JobCollectionTable(jobCollection)
             .expandLabware("labware")
-            .filter(l -> l instanceof Microplate)
+            .filterMicroplate()
             .forEach(plate -> assignIncubateJob2Plate(protocolStep, plate));
    }
 

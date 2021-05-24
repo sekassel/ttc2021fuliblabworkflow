@@ -1,9 +1,13 @@
 package fulib.labworkflow;
 
-import org.fulib.tables.ObjectTable;
+import fulib.labworkflow.tables.JobCollectionTable;
+import fulib.labworkflow.tables.MicroplateTable;
+import fulib.labworkflow.tables.SampleTable;
+import fulib.labworkflow.tables.TipLiquidTransferTable;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 
 public class Update
 {
@@ -17,7 +21,8 @@ public class Update
          updateOne(line.trim());
       }
 
-      jobCollection.getJobs().stream()
+      new JobCollectionTable(jobCollection)
+            .expandJobs("job")
             .filter(j -> j.getState().equals("Planned"))
             .forEach(job -> removeObsoleteJob(job));
    }
@@ -61,41 +66,52 @@ public class Update
    {
       String[] split = change.split("_");
       String stepName = split[0];
-      String plateName = split[1];
       String states = split[2];
 
-      Microplate plate = getPlate(plateName);
-      if (plate == null) {
-         return;
-      }
 
       if (states.length() == 1) {
-         plate.getSamples().forEach(sample -> updateSampleAndJob(sample, plate, states, stepName));
+         updateJobJob(states, stepName);
       }
       else {
-         plate.getSamples().forEach(sample -> updateSampleAndTip(sample, plate, states, stepName));
+         updateSamplesAndTips(stepName, states);
       }
 
    }
 
-   private void updateSampleAndJob(Sample sample, Microplate plate, String states, String stepName)
+
+   private void updateJobJob(String states, String stepName)
    {
-      String jobState = states.equals('S') ? "Planned" : "Failed";
-      plate.getJobs().stream()
+      String jobState = states.equals("S") ? "Succeeded" : "Failed";
+      new JobCollectionTable(jobCollection)
+            .expandLabware("plate")
+            .filterMicroplate()
+            .expandJobs("job")
             .filter(j -> j.getProtocolStepName().equals(stepName))
             .forEach(job -> job.setState(jobState));
    }
 
-   private void updateSampleAndTip(Sample sample, Microplate plate, String states, String stepName)
+   private void updateSamplesAndTips(String stepName, String states)
    {
-      int index = plate.getSamples().indexOf(sample);
-      char state = states.charAt(index);
+      new JobCollectionTable(jobCollection)
+            .expandLabware("plate")
+            .filterMicroplate().expandSamples("sample")
+            .forEach(sample -> updateOneSampleAndTip(sample, states, stepName));
+   }
+
+
+   private void updateOneSampleAndTip(Sample sample, String states, String stepName)
+   {
+      JobRequest jobRequest = sample.getJobRequest();
+      int index = jobRequest.getSamples().indexOf(sample);
+      char state = index >= states.length() ? 'F' : states.charAt(index);
       if (state == 'F') {
          sample.setState("Error");
       }
-      TipLiquidTransfer tip = sample.getTips().stream()
-            .filter(t -> t.getJob().getProtocolStepName().equals(stepName))
-            .findFirst().get();
+
+      TipLiquidTransferTable tipTable = new SampleTable(sample)
+            .expandTips("tip")
+            .filter(t -> t.getJob().getProtocolStepName().equals(stepName));
+      TipLiquidTransfer tip = tipTable.get(0);
 
       if (state == 'S') {
          tip.setStatus("Succeeded");
@@ -111,16 +127,4 @@ public class Update
       }
    }
 
-   private Microplate getPlate(String plateName)
-   {
-      Optional<Labware> plate = jobCollection.getLabware().stream()
-            .filter(labware -> labware.getName().equals(plateName))
-            .findFirst();
-      if (plate.isPresent()) {
-         return (Microplate) plate.get();
-      }
-      else {
-         return null;
-      }
-   }
 }

@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -342,6 +343,10 @@ public class JobTable
          return !predicate.test(map);
       });
       return this;
+   }
+
+   public void forEach(Consumer<Job> consumer) {
+      this.toSet().forEach(consumer);
    }
 
    public Set<Job> toSet()

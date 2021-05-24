@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -350,6 +351,10 @@ public class SampleTable
          return !predicate.test(map);
       });
       return this;
+   }
+
+   public void forEach(Consumer<Sample> consumer) {
+      this.toSet().forEach(consumer);
    }
 
    public Set<Sample> toSet()

@@ -8,6 +8,7 @@ import org.w3c.dom.Text;
 import java.beans.PropertyChangeListenerProxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.logging.Logger;
 
@@ -21,17 +22,17 @@ public class AssayVisitor
       return jobRequest;
    }
 
-   Map<String, Function<Element, Object>> methodMap = null;
+   Map<String, Consumer<Element>> methodMap = null;
 
    public void visit(Element root)
    {
       initMethodMap();
       String tagName = root.getTagName();
 
-      Function<Element, Object> visitFunction = methodMap.get(tagName);
+      Consumer<Element> visitFunction = methodMap.get(tagName);
 
       if (visitFunction != null) {
-         visitFunction.apply(root);
+         visitFunction.accept(root);
       }
       else
       {
@@ -52,16 +53,15 @@ public class AssayVisitor
       }
    }
 
-   private Object visitReagent(Element element)
+   private void visitReagent(Element element)
    {
       Reagent reagent = new Reagent();
       String name = element.getAttribute("name");
       reagent.setName(name);
       assay.withReagents(reagent);
-      return reagent;
    }
 
-   private Object visitSample(Element element)
+   private void visitSample(Element element)
    {
       Sample sample = new Sample();
 
@@ -69,59 +69,83 @@ public class AssayVisitor
       sample.setSampleID(sampleID).setState("Waiting");
 
       jobRequest.withSamples(sample);
-      return null;
    }
 
-   private Object visitStep(Element element)
+
+
+   private void visitStep(Element element)
    {
+      initStepMap();
       String type = element.getAttribute("xsi:type");
-      if (type.equals("lab:DistributeSample")) {
-         DistributeSample step = new DistributeSample();
-         String id = element.getAttribute("id");
-         step.setId(id);
-         String volumeTxt = element.getAttribute("volume");
-         double volume = Double.parseDouble(volumeTxt);
-         step.setVolume(volume);
+      Consumer<Element> stepConsumer = stepMap.get(type);
+      stepConsumer.accept(element);
+   }
 
-         setPreviousStep(element, step);
-         assay.withSteps(step);
-      }
-      else if (type.equals("lab:Incubate")) {
-         Incubate step = new Incubate();
-         String id = element.getAttribute("id");
-         step.setId(id);
-         String txt = element.getAttribute("temperature");
-         double value = Double.parseDouble(txt);
-         step.setTemperature(value);
-         txt = element.getAttribute("duration");
-         int duration = Integer.parseInt(txt);
-         step.setDuration(duration);
+   LinkedHashMap<String, Consumer<Element>> stepMap = null;
 
-         setPreviousStep(element, step);
+   private void initStepMap()
+   {
+      if (stepMap == null) {
+         stepMap = new LinkedHashMap<>();
+         stepMap.put("lab:DistributeSample", this::visitDistributeSampleStep);
+         stepMap.put("lab:Incubate", this::visitIncubateStep);
+         stepMap.put("lab:Wash", this::visitWashStep);
+         stepMap.put("lab:AddReagent", this::visitAddReagentStep);
+      }
+   }
 
-         assay.withSteps(step);
-      }
-      else if (type.equals("lab:Wash")) {
-         Wash step = new Wash();
-         String id = element.getAttribute("id");
-         step.setId(id);
+   private void visitAddReagentStep(Element element)
+   {
+      AddReagent step = new AddReagent();
+      String id = element.getAttribute("id");
+      step.setId(id);
+      String volumeTxt = element.getAttribute("volume");
+      double volume = Double.parseDouble(volumeTxt);
+      step.setVolume(volume);
+      String ref = element.getAttribute("reagent");
+      reagentMap.put(step, ref);
+      setPreviousStep(element, step);
+      assay.withSteps(step);
+   }
 
-         setPreviousStep(element, step);
-         assay.withSteps(step);
-      }
-      else if (type.equals("lab:AddReagent")) {
-         AddReagent step = new AddReagent();
-         String id = element.getAttribute("id");
-         step.setId(id);
-         String volumeTxt = element.getAttribute("volume");
-         double volume = Double.parseDouble(volumeTxt);
-         step.setVolume(volume);
-         String ref = element.getAttribute("reagent");
-         reagentMap.put(step, ref);
-         setPreviousStep(element, step);
-         assay.withSteps(step);
-      }
-      return null;
+   private void visitWashStep(Element element)
+   {
+      Wash step = new Wash();
+      String id = element.getAttribute("id");
+      step.setId(id);
+
+      setPreviousStep(element, step);
+      assay.withSteps(step);
+   }
+
+   private void visitIncubateStep(Element element)
+   {
+      Incubate step = new Incubate();
+      String id = element.getAttribute("id");
+      step.setId(id);
+      String txt = element.getAttribute("temperature");
+      double value = Double.parseDouble(txt);
+      step.setTemperature(value);
+      txt = element.getAttribute("duration");
+      int duration = Integer.parseInt(txt);
+      step.setDuration(duration);
+
+      setPreviousStep(element, step);
+
+      assay.withSteps(step);
+   }
+
+   private void visitDistributeSampleStep(Element element)
+   {
+      DistributeSample step = new DistributeSample();
+      String id = element.getAttribute("id");
+      step.setId(id);
+      String volumeTxt = element.getAttribute("volume");
+      double volume = Double.parseDouble(volumeTxt);
+      step.setVolume(volume);
+
+      setPreviousStep(element, step);
+      assay.withSteps(step);
    }
 
    private LinkedHashMap<AddReagent, String> reagentMap = new LinkedHashMap<>();
@@ -138,7 +162,7 @@ public class AssayVisitor
       }
    }
 
-   private Object visitAssay(Element element)
+   private void visitAssay(Element element)
    {
       assay = new Assay();
       jobRequest.setAssay(assay);
@@ -156,17 +180,12 @@ public class AssayVisitor
          Reagent reagent = assay.getReagents().get(i);
          step.setReagent(reagent);
       }
-
-      return assay;
    }
 
-   private Object visitLabJobRequest(Element element)
+   private void visitLabJobRequest(Element element)
    {
       jobRequest = new JobRequest();
-
       visitChildNodes(element);
-
-      return jobRequest;
    }
 
    private void visitChildNodes(Element element)

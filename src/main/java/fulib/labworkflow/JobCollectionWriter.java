@@ -53,7 +53,7 @@ public class JobCollectionWriter
          transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
          DOMSource source = new DOMSource(document);
 
-         String fileName = String.format("models/%s/%s/results/%sResult-Fulib.mxi", scenario, model, phase);
+         String fileName = String.format("models/%s/%s/results/%sResult-Fulib.xmi", scenario, model, phase);
          FileWriter writer = new FileWriter(new File(fileName));
          StreamResult result = new StreamResult(writer);
 
@@ -71,6 +71,9 @@ public class JobCollectionWriter
       String simpleName = job.getClass().getSimpleName();
       element.setAttribute("xsi:type", "jobs:" + simpleName);
       element.setAttribute("protocolStepName", job.getProtocolStepName());
+      if ( ! job.getState().equals("Planned")) {
+         element.setAttribute("state", job.getState());
+      }
       BiConsumer<Job, Element> jobAttributesWriter = jobsMap.get(job.getClass());
       if (jobAttributesWriter != null) {
          jobAttributesWriter.accept(job, element);
@@ -131,6 +134,9 @@ public class JobCollectionWriter
       tipElement.setAttribute("volume", "" + (int) tip.getVolume());
       tipElement.setAttribute("sourceCavityIndex", "" + tip.getSourceCavityIndex());
       tipElement.setAttribute("targetCavityIndex", "" + tip.getTargetCavityIndex());
+      if ( ! tip.getStatus().equals("Planned")) {
+         tipElement.setAttribute("status", tip.getStatus());
+      }
       element.appendChild(tipElement);
    }
 

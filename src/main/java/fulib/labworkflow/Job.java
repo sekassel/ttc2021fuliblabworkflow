@@ -10,7 +10,7 @@ public class Job
    public static final String PROPERTY_NEXT = "next";
    public static final String PROPERTY_JOB_COLLECTION = "jobCollection";
    public static final String PROPERTY_MICROPLATE = "microplate";
-   private String state;
+   private String state; // no fulib
    private String protocolStepName;
    private Job previous;
    private Job next;
